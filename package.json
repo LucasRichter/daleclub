@@ -1,0 +1,56 @@
+{
+	"name": "daleclub",
+	"version": "1.0.0",
+	"description": "daleclub",
+	"main": "server/server.js",
+	"license": "ISC",
+	"scripts": {
+		"test": "echo 'Running Standard.js and Jasmine unit tests...\n' && yarn lint && yarn unit",
+		"unit": "jasmine",
+		"lint": "standard",
+		"fix": "standard --fix",
+		"dev": "MONGODB_URI=mongodb://daleclub01:daleclub01@mongodb.daleclub.com.br:80/daleclub01 nodemon -w server -w package.json server/server.js",
+		"build": "next build",
+		"heroku-postbuild": "next build",
+		"start": "NODE_ENV=production MONGODB_URI=mongodb://mongodb.daleclub.com.br/daleclub01 node server/server.js"
+	},
+	"now": {
+		"name": "daleclub",
+		"alias": "daleclub"
+	},
+	"engines": {
+		"node": "^11.14.0",
+		"yarn": "^1.15.2"
+	},
+	"dependencies": {
+		"body-parser": "^1.15.2",
+		"dotenv": "^6.2.0",
+		"express": "^4.14.0",
+		"glob": "^7.1.2",
+		"isomorphic-fetch": "^2.2.1",
+		"isomorphic-unfetch": "^2.0.0",
+		"lodash": "^4.17.4",
+		"mongoose": "^4.7.6",
+		"mongoose-crudify": "^0.2.0",
+		"next": "^8.0.3",
+		"next-redux-wrapper": "^3.0.0-alpha.1",
+		"next-routes": "^1.4.2",
+		"react": "^16.0.0",
+		"react-dom": "^16.0.0"
+	},
+	"devDependencies": {
+		"babel-eslint": "^10.0.1",
+		"jasmine": "^3.3.1",
+		"nodemon": "^1.12.1",
+    "eslint": "^4.19.1",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-loader": "^2.0.0",
+    "eslint-plugin-import": "^2.11.0",
+    "eslint-plugin-jest": "^21.15.1",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-promise": "^3.7.0",
+    "eslint-plugin-react": "^7.10.0",
+    "eslint-plugin-standard": "^3.1.0",
+	  "standard": "^12.0.1"
+	}
+}
