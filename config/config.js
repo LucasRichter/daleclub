@@ -1,6 +1,6 @@
 const appName = 'daleclub'
 const databaseName = 'daleclub'
-const serverPort = process.env.PORT || 80
+const serverPort = process.env.PORT || 8081
 
 const completeConfig = {
 

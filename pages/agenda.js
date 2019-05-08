@@ -17,7 +17,7 @@ class Agenda extends Component {
   }
 
   static async getInitialProps ({ query: { id } }) {
-    const res = await Axios.get(process.env.API_DOMAIN + '/api/events/' + id)
+    const res = await Axios.get('/api/events/' + id, { baseUrl: process.env.API_DOMAIN })
     return { event: res.data }
   }
 
