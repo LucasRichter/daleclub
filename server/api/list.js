@@ -1,16 +1,16 @@
 'use strict'
 
 const mongooseCrudify = require('mongoose-crudify')
+
 const helpers = require('../services/helpers')
-const Event = require('../models/event')
+const List = require('../models/list')
 
 module.exports = function (server) {
   // Docs: https://github.com/ryo718/mongoose-crudify
   server.use(
-    '/api/events',
+    '/api/lists',
     mongooseCrudify({
-      Model: Event,
-      identifyingKey: 'permalink',
+      Model: List,
       selectFields: '-__v', // Hide '__v' property
       endResponseInAction: false,
 
