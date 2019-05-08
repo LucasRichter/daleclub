@@ -4,7 +4,6 @@ import PageHead from '../components/PageHead'
 import { Flex, Box } from '@rebass/grid'
 import Button from '@material-ui/core/Button'
 import Axios from 'axios'
-import { H2 } from '../components/Title'
 import Text from '../components/Text'
 import SectionTitle from '../components/SectionTitle'
 
@@ -19,7 +18,7 @@ class Agenda extends Component {
 
   static async getInitialProps ({ query: { id } }) {
     console.log(id)
-    const res = await Axios.get('http://localhost:8081/api/events/' + id)
+    const res = await Axios.get('/api/events/' + id)
     return { event: res.data }
   }
 

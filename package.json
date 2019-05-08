@@ -12,7 +12,7 @@
 		"dev": "MONGODB_URI=mongodb://daleclub01:daleclub01@mongodb.daleclub.com.br/daleclub01 nodemon -w server -w package.json server/server.js",
 		"build": "next build",
 		"heroku-postbuild": "next build",
-		"start": "NODE_ENV=production MONGODB_URI=mongodb://mongodb.daleclub.com.br/daleclub01 pm2 server/server.js"
+		"start": "NODE_ENV=production PORT=21252 MONGODB_URI=mongodb://mongodb.daleclub.com.br/daleclub01 && pm2 start server/server.js"
 	},
 	"now": {
 		"name": "daleclub",

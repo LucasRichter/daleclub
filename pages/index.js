@@ -16,7 +16,7 @@ class IndexPage extends Component {
   }
 
   static async getInitialProps () {
-    const res = await Axios.get('http://localhost:8081/api/events')
+    const res = await Axios.get('/api/events')
     return { events: res.data }
   }
 
