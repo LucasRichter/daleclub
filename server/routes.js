@@ -6,8 +6,10 @@ const routesImplementation = routes()
 //   .add('/blog/:slug', 'blogShow')
 //   .add('showBlogPostRoute', '/blog/:slug', 'blogShow')
 
-routesImplementation.add('/:slug', 'index')
-routesImplementation.add('/more/:slug', 'index')
+routesImplementation.add('/:id', 'index')
+routesImplementation.add('/agenda/:id', 'agenda')
+routesImplementation.add('/listaaniversario', 'listaaniversario')
+routesImplementation.add('/listaaniversario/:id', 'listaaniversario')
 
 module.exports = routesImplementation
 

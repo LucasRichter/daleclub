@@ -24,7 +24,7 @@ const StyledSocial = styled(Box)`
   @media ${mediaQueries.laptop} {
     display: block;
     position: fixed;
-    bottom: 100px;
+    bottom: 40px;
     left: 25px;
   }
 `
@@ -32,7 +32,7 @@ const StyledSocial = styled(Box)`
 const SocialMedias = () =>
   <StyledSocial>
     {links.map(({ Icon, link }) => (
-      <Box mb='20px'>
+      <Box key={link} mb='20px'>
         <a href={link} target='_blank'>
           <Icon />
         </a>

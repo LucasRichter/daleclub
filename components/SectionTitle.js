@@ -9,6 +9,11 @@ const StyledTitle = styled(H2)`
   display: flex;
   align-items: center;
   text-transform: uppercase;
+
+  ${p => p.bottom && css`
+    display: block;
+  `};
+
   color: ${p =>
     p.purple
       ? colors.purple
@@ -18,7 +23,7 @@ const StyledTitle = styled(H2)`
           ? colors.sea
           : p.dark
             ? colors.dark
-            : 'white'};
+            : 'black'};
 
     ::after {
       content: '';
@@ -31,14 +36,14 @@ const StyledTitle = styled(H2)`
           ? colors.sea
           : p.dark
             ? colors.dark
-            : 'white'};
+            : 'black'};
       display: block;
       height: 2px;
       width: 0;
-      margin-left: 40px;
+      margin-left: ${p => p.bottom ? '0' : '40px'};
       transition: width .365s ease-in-out;
       ${p => p.isVisible && css`
-        width: 50%;
+        width: 100%;
       `};
     }
 `

@@ -7,7 +7,7 @@ const Event = require('../models/event')
 module.exports = function (server) {
   // Docs: https://github.com/ryo718/mongoose-crudify
   server.use(
-    '/api/events',
+    '/api/events?',
     mongooseCrudify({
       Model: Event,
       identifyingKey: 'permalink',

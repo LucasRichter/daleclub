@@ -11,10 +11,6 @@ const Menu = styled.div`
 
   @media ${mediaQueries.laptop} {
     display: block;
-    flex-grow: 1;
-    margin: auto;
-    max-width: 500px;
-    flex-basis: 0;
   }
 `
 
@@ -26,7 +22,7 @@ const MenuDesktop = ({ links }) =>
     >
       {Object.entries(links).map(([key, value]) => (
         <Link key={key} href={`/${key}`}>
-          <Anchor>
+          <Anchor p='0 20px'>
             {value}
           </Anchor>
         </Link>

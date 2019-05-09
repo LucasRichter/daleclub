@@ -6,6 +6,10 @@ import Reset from 'styled-reset'
 import { createGlobalStyle, keyframes } from 'styled-components'
 import moment from 'moment'
 import SocialMedias from '../components/SocialLinks'
+import Footer from '../components/Footer'
+import axios from 'axios'
+
+axios.defaults.baseURL = process.env.API_DOMAIN
 
 moment.locale('pt-br')
 
@@ -52,13 +56,15 @@ class MyApp extends App {
 
   render () {
     const { Component, pageProps } = this.props
+    const render = typeof window !== 'undefined'
     return (
       <Fragment>
         <GlobalStyle />
         <Container>
           <Header />
-          <Component {...pageProps} />
+          {render && <Component {...pageProps} />}
           <SocialMedias />
+          <Footer />
         </Container>
       </Fragment>
     )

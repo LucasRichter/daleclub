@@ -3,7 +3,6 @@ const databaseName = 'daleclub'
 const serverPort = process.env.PORT || 8081
 
 const completeConfig = {
-
   default: {
     appName,
     serverPort,

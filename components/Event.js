@@ -16,7 +16,6 @@ const Container = styled(Box)`
   justify-content: center;
   flex-grow: 1;
   flex-basis: 0;
-  margin: 0 10px;
   transition: all .300s ease-in;
   transform: translateY(20%);
   opacity: 0;
@@ -31,9 +30,20 @@ const Image = styled.img`
   width: 100%;
 `
 
+const EventMain = styled.div`
+cursor: pointer;
+  transition: all .125s ease-in-out;
+
+  :hover {
+    opacity: .5;
+    transform: scale(1.05);
+  }
+`
+
 export default class Event extends Component {
   static propTypes = {
     event: PropTypes.object.isRequired,
+    onGuest: PropTypes.func.isRequired,
     index: PropTypes.number.isRequired
   }
 
@@ -50,18 +60,19 @@ export default class Event extends Component {
   }
 
   render() {
-    const { event } = this.props
+    const { event, onGuest } = this.props
     const { party, date, cover, permalink, has_birthday_lists: hasBirhday, has_guests: hasGuests } = event
 
     return (
       <Container
+        m='20px'
         show={this.state.show}
       >
         <Link
           href={`/agenda?id=${permalink}`}
           as={`/agenda/${permalink}`}
         >
-          <Box css={{ cursor: 'pointer' }}>
+          <EventMain>
             <H2 centered fontSize='15px' color='white'>
               <strong>{party.toUpperCase()}</strong>
             </H2>
@@ -81,23 +92,22 @@ export default class Event extends Component {
               src={cover}
               alt={party}
             />
-          </Box>
+          </EventMain>
 
         </Link>
-        {hasGuests &&
-          <Box mt='20px' width='100%'>
-            <Button fullWidth color='secondary' variant='contained' size='large'>
-          Nome na lista
-            </Button>
-          </Box>
-        }
-        {hasBirhday &&
-          <Box mt='20px' width='100%'>
-            <Button fullWidth variant='contained' color='primary' size='large'>
-          Lista aniversário
-            </Button>
-          </Box>
-        }
+
+        <Box mt='20px' width='100%'>
+          <Button onClick={() => onGuest(event)} disabled={!hasGuests} fullWidth color='secondary' variant='contained' size='large'>
+            {hasGuests ? 'Nome na lista' : 'Nome encerrado'}
+          </Button>
+        </Box>
+
+        <Box mt='20px' width='100%'>
+          <Button disabled={!hasBirhday} fullWidth variant='contained' color='primary' size='large'>
+            {hasBirhday ? 'Lista aniversário' : 'Aniversário encerrado'}
+          </Button>
+        </Box>
+
       </Container>
     )
   }
