@@ -43,9 +43,17 @@ export default class GuestForm extends React.Component {
             onChange={this.onChange}
             autoFocus
             margin='dense'
-            id='name'
-            label='Email Address'
+            id='email'
+            label='E-mail'
             type='email'
+            fullWidth
+          />
+          <TextField
+            onChange={this.onChange}
+            autoFocus
+            margin='dense'
+            id='name;'
+            label='Nome'
             fullWidth
           />
         </DialogContent>

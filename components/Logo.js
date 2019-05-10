@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 const Logo = styled.img`
+  margin: ${p => p.m};
   max-width: 150px;
   cursor: pointer;
   transition: transform .125s ease-in-out;

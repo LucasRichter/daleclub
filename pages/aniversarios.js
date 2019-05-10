@@ -67,7 +67,7 @@ class IndexPage extends Component {
   P.s.: nas festas OPEN BAR não teremos promoção para aniversariantes
             </Text>
 
-            <Link href='/listaaniversario'>
+            <Link href='/lista'>
               <Button color='secondary' variant='contained' size='large'>
                 Enviar lista de aniversário
               </Button>

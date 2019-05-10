@@ -27,13 +27,13 @@ class Agenda extends Component {
   }
 
   static async getInitialProps ({ query: { id } }) {
-    const res = await Axios.get('/api/events/' + id)
-    return { event: res.data }
+    const res = await Axios.get('/api/events?permalink=' + id)
+    return { event: res.data[0] }
   }
 
   render () {
     const { event } = this.props
-    const { party, description, cover, permalink, edition, has_birthday_lists: hasBirhday, has_guests: hasGuests } = event
+    const { party, description, cover, permalink, edition, lists, guests } = event
 
     return (
       <main>
@@ -53,14 +53,14 @@ class Agenda extends Component {
               alt={party}
             />
             <Box mt='20px' width='100%'>
-              <Button disabled={!hasGuests} fullWidth color='secondary' variant='contained' size='large'>
-                {hasGuests ? 'Nome na lista' : 'Nome encerrado'}
+              <Button disabled={!guests} fullWidth color='secondary' variant='contained' size='large'>
+                {guests ? 'Nome na lista' : 'Nome encerrado'}
               </Button>
             </Box>
 
             <Box mt='20px' width='100%'>
-              <Button disabled={!hasBirhday} href={`/listaaniversario/${permalink}`} fullWidth variant='contained' color='primary' size='large'>
-                {hasBirhday ? 'Lista aniversário' : 'Aniversário encerrado'}
+              <Button disabled={!lists} href={`/lista/${permalink}`} fullWidth variant='contained' color='primary' size='large'>
+                {lists ? 'Lista aniversário' : 'No Hay'}
               </Button>
             </Box>
           </Box>
@@ -78,8 +78,7 @@ class Agenda extends Component {
               <Text
                 m='20px 0'
                 opaque
-                color='#5d5d5d'
-                styles={{ workBreak: 'break-all' }}
+                styles={{ wordBreak: 'break-all' }}
               >
                 {description}
               </Text>

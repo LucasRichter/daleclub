@@ -1,24 +1,18 @@
 'use strict'
 
-const mongooseCrudify = require('mongoose-crudify')
 const helpers = require('../services/helpers')
 const Event = require('../models/event')
 
-module.exports = function (server) {
-  // Docs: https://github.com/ryo718/mongoose-crudify
-  server.use(
-    '/api/events?',
-    mongooseCrudify({
-      Model: Event,
-      identifyingKey: 'permalink',
-      selectFields: '-__v', // Hide '__v' property
-      endResponseInAction: false,
+const setFile = (req, res, next) => {
+  req.body.cover = req.file
+  next()
+}
 
-      // beforeActions: [],
-      // actions: {}, // list (GET), create (POST), read (GET), update (PUT), delete (DELETE)
-      afterActions: [
-        { middlewares: [helpers.formatResponse] }
-      ]
-    })
-  )
+Event.methods(['get', 'post', 'put', 'delete'])
+Event.updateOptions({ new: true, runValidators: true })
+Event.before('post', setFile).before('put', setFile)
+Event.after('post', helpers.formatResponse).after('put', helpers.formatResponse)
+
+module.exports = function (server) {
+  Event.register(server, '/api/events')
 }

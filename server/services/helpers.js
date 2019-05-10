@@ -1,15 +1,22 @@
-//
-// Name:    helpers.js
-// Purpose: Library for helper functions
-// Creator: Tom Söderlund
-//
-
 'use strict'
 
 const _ = require('lodash')
 
-// Since DELETE doesn't return the _id of deleted item by default
+const parseErrors = (nodeRestfulErrors) => {
+  const errors = {}
+  _.forIn(nodeRestfulErrors, ({ path, message }) => {
+    errors[path] = message
+  })
+  return errors
+}
+
 module.exports.formatResponse = function (req, res, next) {
-  if (req.crudify.err) console.error('formatResponse:', _.get(req, 'crudify.err.message'))
-  return res.json(req.crudify.err || (req.method === 'DELETE' ? req.params : req.crudify.result))
+  const bundle = res.locals.bundle
+
+  if (bundle.errors) {
+    const errors = parseErrors(bundle.errors)
+    res.status(400).json({ errors })
+  } else {
+    next()
+  }
 }

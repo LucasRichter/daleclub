@@ -1,24 +1,11 @@
 'use strict'
 
-const mongooseCrudify = require('mongoose-crudify')
-
 const helpers = require('../services/helpers')
 const List = require('../models/list')
+List.methods(['get', 'post', 'put', 'delete'])
+List.updateOptions({ new: true, runValidators: true })
+List.after('post', helpers.formatResponse).after('put', helpers.formatResponse)
 
 module.exports = function (server) {
-  // Docs: https://github.com/ryo718/mongoose-crudify
-  server.use(
-    '/api/lists',
-    mongooseCrudify({
-      Model: List,
-      selectFields: '-__v', // Hide '__v' property
-      endResponseInAction: false,
-
-      // beforeActions: [],
-      // actions: {}, // list (GET), create (POST), read (GET), update (PUT), delete (DELETE)
-      afterActions: [
-        { middlewares: [helpers.formatResponse] }
-      ]
-    })
-  )
+  List.register(server, '/api/lists')
 }

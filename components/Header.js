@@ -28,7 +28,7 @@ export default () => (
     <MenuMobile links={links} />
 
     <Link href='/'>
-      <Logo />
+      <Logo m='0 auto' />
     </Link>
 
     <Menudesktop links={links} />

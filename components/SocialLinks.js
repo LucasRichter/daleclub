@@ -34,7 +34,7 @@ const SocialMedias = () =>
     {links.map(({ Icon, link }) => (
       <Box key={link} mb='20px'>
         <a href={link} target='_blank'>
-          <Icon />
+          <Icon color='#55CBDC' />
         </a>
       </Box>
     ))}

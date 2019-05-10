@@ -61,7 +61,7 @@ export default class Event extends Component {
 
   render() {
     const { event, onGuest } = this.props
-    const { party, date, cover, permalink, has_birthday_lists: hasBirhday, has_guests: hasGuests } = event
+    const { party, date, cover, permalink, lists, guests } = event
 
     return (
       <Container
@@ -97,14 +97,14 @@ export default class Event extends Component {
         </Link>
 
         <Box mt='20px' width='100%'>
-          <Button onClick={() => onGuest(event)} disabled={!hasGuests} fullWidth color='secondary' variant='contained' size='large'>
-            {hasGuests ? 'Nome na lista' : 'Nome encerrado'}
+          <Button onClick={() => onGuest(event)} disabled={!guests} fullWidth color='secondary' variant='contained' size='large'>
+            {guests ? 'Nome na lista' : 'Nome encerrado'}
           </Button>
         </Box>
 
         <Box mt='20px' width='100%'>
-          <Button disabled={!hasBirhday} fullWidth variant='contained' color='primary' size='large'>
-            {hasBirhday ? 'Lista aniversário' : 'Aniversário encerrado'}
+          <Button href={`/lista/${permalink}`} disabled={!lists} fullWidth variant='contained' color='primary' size='large'>
+            {lists ? 'Lista aniversário' : 'No Hay'}
           </Button>
         </Box>
 

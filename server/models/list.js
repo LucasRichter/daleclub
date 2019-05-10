@@ -1,4 +1,5 @@
-const mongoose = require('mongoose')
+const restful = require('node-restful')
+const mongoose = restful.mongoose
 const Schema = mongoose.Schema
 const ObjectId = Schema.ObjectId
 
@@ -10,4 +11,4 @@ const listSchema = new Schema({
   birthday: { type: Date, required: true }
 })
 
-module.exports = mongoose.model('List', listSchema)
+module.exports = restful.model('List', listSchema)

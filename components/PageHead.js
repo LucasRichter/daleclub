@@ -5,6 +5,8 @@ import PropTypes from 'prop-types'
 const PageHead = ({ title, description }) => (
   <Head>
     <title>{title}</title>
+    <link rel='shortcut icon' type='image/png' href='/static/fav.ico' />
+
     <link href='https://fonts.googleapis.com/css?family=Inconsolata|Montserrat|Work+Sans:400,600|Material+Icons' rel='stylesheet' />
     <meta name='description' content={description} />
     <meta charSet='utf-8' />

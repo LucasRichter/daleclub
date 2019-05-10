@@ -3,9 +3,9 @@ import PropTypes from 'prop-types'
 import PageHead from '../components/PageHead'
 import { Flex, Box } from '@rebass/grid'
 import Event from '../components/Event'
-import Axios from 'axios'
 import SectionTitle from '../components/SectionTitle'
 import GuestForm from '../components/GuestForm'
+import { getEvents } from '../services/eventsServices'
 
 class IndexPage extends Component {
   static propTypes = {
@@ -17,8 +17,8 @@ class IndexPage extends Component {
   }
 
   static async getInitialProps () {
-    const res = await Axios.get('/api/events')
-    return { events: res.data }
+    const events = await getEvents()
+    return { events }
   }
 
   state = {
@@ -28,7 +28,7 @@ class IndexPage extends Component {
 
   render () {
     const { events } = this.props
-    console.log(this.state)
+
     return (
       <main>
         <PageHead

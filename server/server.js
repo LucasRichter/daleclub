@@ -9,7 +9,8 @@ const next = require('next')
 
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
-
+const multer = require('multer')
+const upload = multer()
 const routes = require('./routes')
 const routerHandler = routes.getRequestHandler(app)
 
@@ -27,6 +28,8 @@ app.prepare().then(() => {
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
     next()
   })
+  // for parsing multipart/form-data
+  server.use(upload.single('cover'))
 
   // MongoDB
   mongoose.Promise = Promise

@@ -8,8 +8,8 @@ const routesImplementation = routes()
 
 routesImplementation.add('/:id', 'index')
 routesImplementation.add('/agenda/:id', 'agenda')
-routesImplementation.add('/listaaniversario', 'listaaniversario')
-routesImplementation.add('/listaaniversario/:id', 'listaaniversario')
+routesImplementation.add('/lista', 'lista')
+routesImplementation.add('/lista/:event', 'lista')
 
 module.exports = routesImplementation
 
