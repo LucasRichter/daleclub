@@ -10,7 +10,7 @@ import Slider from 'react-slick'
 import styled from 'styled-components'
 
 const Slide = styled.div`
-  min-height: 150px;
+  min-height: 120px;
   background-image: url(${p => p.url});
   width: 100%;
   background-size: cover;
