@@ -4,6 +4,7 @@ import MenuMobile from './MenuMobile'
 import Link from 'next/link'
 import mediaQueries from '../helpers/mediaQueries'
 import Menudesktop from './MenuDesktop'
+import { Box } from '@rebass/grid'
 import Logo from './Logo'
 
 const StyledHeader = styled.header`
@@ -13,7 +14,12 @@ const StyledHeader = styled.header`
   text-align: center;
 
   @media ${mediaQueries.laptop} {
-    margin: 20px 60px 0 80px;
+    position: absolute;
+    z-index: 99;
+    top: 20px;
+    padding: 0 80px;
+    box-sizing: border-box;
+    width: 100%;
   }
 `
 
@@ -27,9 +33,11 @@ export default () => (
   <StyledHeader>
     <MenuMobile links={links} />
 
-    <Link href='/'>
-      <Logo m='0 auto' />
-    </Link>
+    <Box m='0 auto' css={{ flexGrow: 1, flexBasis: 0 }}>
+      <Link href='/'>
+        <Logo />
+      </Link>
+    </Box>
 
     <Menudesktop links={links} />
   </StyledHeader>

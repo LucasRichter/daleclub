@@ -1,7 +1,7 @@
 export default {
   purple: '#7757cb',
-  blueLight: '#58c9e0',
-  sea: '#2a2ca7',
+  blueLight: '#2ecbdb',
+  sea: '#003895',
   purpleLight: '#f4eef3',
-  dark: '#312631'
+  dark: '#292929'
 }

@@ -8,6 +8,7 @@ import Text from '../components/Text'
 import SectionTitle from '../components/SectionTitle'
 import styled from 'styled-components'
 import mediaQueries from '../helpers/mediaQueries'
+import GuestForm from '../components/GuestForm'
 
 const Image = styled.img`
   max-width: 100%;
@@ -26,6 +27,10 @@ class Agenda extends Component {
     event: []
   }
 
+  state = {
+    open: false
+  }
+
   static async getInitialProps ({ query: { id } }) {
     const res = await Axios.get('/api/events?permalink=' + id)
     return { event: res.data[0] }
@@ -33,7 +38,7 @@ class Agenda extends Component {
 
   render () {
     const { event } = this.props
-    const { party, description, cover, permalink, edition, lists, guests } = event
+    const { _id, party, description, cover, permalink, edition, lists, guests } = event
 
     return (
       <main>
@@ -44,16 +49,17 @@ class Agenda extends Component {
 
         <Flex
           css={{ backgroundColor: 'white' }}
+          m={['20px 0', '180px 0 0']}
           p={['20px', '40px 80px']}
           flexDirection={['column', 'row']}
         >
           <Box>
             <Image
-              src={cover}
+              src={`/${cover.path}`}
               alt={party}
             />
             <Box mt='20px' width='100%'>
-              <Button disabled={!guests} fullWidth color='secondary' variant='contained' size='large'>
+              <Button onClick={() => this.setState({ open: true })} disabled={!guests} fullWidth color='secondary' variant='contained' size='large'>
                 {guests ? 'Nome na lista' : 'Nome encerrado'}
               </Button>
             </Box>
@@ -78,7 +84,7 @@ class Agenda extends Component {
               <Text
                 m='20px 0'
                 opaque
-                styles={{ wordBreak: 'break-all' }}
+                style={{ wordBreak: 'break-all' }}
               >
                 {description}
               </Text>
@@ -87,6 +93,11 @@ class Agenda extends Component {
 
         </Flex>
 
+        <GuestForm
+          open={this.state.open}
+          party={_id}
+          onClose={() => this.setState({ open: false })}
+        />
       </main>
     )
   }

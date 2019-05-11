@@ -6,6 +6,7 @@ import Event from '../components/Event'
 import SectionTitle from '../components/SectionTitle'
 import GuestForm from '../components/GuestForm'
 import { getEvents } from '../services/eventsServices'
+import Slider from 'react-slick'
 
 class IndexPage extends Component {
   static propTypes = {
@@ -28,6 +29,14 @@ class IndexPage extends Component {
 
   render () {
     const { events } = this.props
+    var settings = {
+      dots: true,
+      infinite: true,
+      autoplay: true,
+      speed: 500,
+      slidesToShow: 1,
+      slidesToScroll: 1
+    }
 
     return (
       <main>
@@ -36,10 +45,19 @@ class IndexPage extends Component {
           description='Daleclub'
         />
 
+        <Slider {...settings}>
+          <img src='https://scontent.fpoa4-1.fna.fbcdn.net/v/t1.0-9/45455281_2281206948616163_7889246965836283904_o.jpg?_nc_cat=111&_nc_ht=scontent.fpoa4-1.fna&oh=4e462d442f142f308cff2b25f73e91b3&oe=5D6C31F6' />
+          <img src='https://scontent.fpoa4-1.fna.fbcdn.net/v/t1.0-9/45455281_2281206948616163_7889246965836283904_o.jpg?_nc_cat=111&_nc_ht=scontent.fpoa4-1.fna&oh=4e462d442f142f308cff2b25f73e91b3&oe=5D6C31F6' />
+          <img src='https://scontent.fpoa4-1.fna.fbcdn.net/v/t1.0-9/45455281_2281206948616163_7889246965836283904_o.jpg?_nc_cat=111&_nc_ht=scontent.fpoa4-1.fna&oh=4e462d442f142f308cff2b25f73e91b3&oe=5D6C31F6' />
+          <img src='https://scontent.fpoa4-1.fna.fbcdn.net/v/t1.0-9/45455281_2281206948616163_7889246965836283904_o.jpg?_nc_cat=111&_nc_ht=scontent.fpoa4-1.fna&oh=4e462d442f142f308cff2b25f73e91b3&oe=5D6C31F6' />
+          <img src='https://scontent.fpoa4-1.fna.fbcdn.net/v/t1.0-9/45455281_2281206948616163_7889246965836283904_o.jpg?_nc_cat=111&_nc_ht=scontent.fpoa4-1.fna&oh=4e462d442f142f308cff2b25f73e91b3&oe=5D6C31F6' />
+        </Slider>
+
         <Box
           mt='20px'
           mx={['20px', '80px']}
         >
+
           <Box mb='40px'>
             <SectionTitle
               title='Agenda'

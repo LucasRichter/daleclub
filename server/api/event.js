@@ -4,7 +4,9 @@ const helpers = require('../services/helpers')
 const Event = require('../models/event')
 
 const setFile = (req, res, next) => {
-  req.body.cover = req.file
+  if (req.files) {
+    req.body.cover = req.files[0]
+  }
   next()
 }
 

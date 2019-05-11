@@ -10,6 +10,8 @@ routesImplementation.add('/:id', 'index')
 routesImplementation.add('/agenda/:id', 'agenda')
 routesImplementation.add('/lista', 'lista')
 routesImplementation.add('/lista/:event', 'lista')
+routesImplementation.add('/admin', 'admin')
+routesImplementation.add('/admin/:slug', 'admin')
 
 module.exports = routesImplementation
 

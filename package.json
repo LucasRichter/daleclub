@@ -18,16 +18,14 @@
 		"name": "daleclub",
 		"alias": "daleclub"
 	},
-	"engines": {
-		"node": "^11.14.0",
-		"yarn": "^1.15.2"
-	},
 	"dependencies": {
 		"@material-ui/core": "^3.9.3",
 		"@rebass/grid": "^6.0.0",
+		"@tinymce/tinymce-react": "^3.1.1",
 		"axios": "^0.18.0",
 		"body-parser": "^1.15.2",
 		"dotenv": "^6.2.0",
+		"draft-js": "^0.10.5",
 		"eslint-config-standard-react": "^7.0.2",
 		"express": "^4.14.0",
 		"express-basic-auth": "^1.2.0",
@@ -40,15 +38,19 @@
 		"mongoose-crudify": "^0.2.0",
 		"mongoose-file": "^0.0.2",
 		"mongoose-paginate": "^5.0.3",
+		"mongoose-thumbnail": "^0.0.1",
 		"multer": "^1.4.1",
 		"next": "^8.0.3",
 		"next-redux-wrapper": "^3.0.0-alpha.1",
 		"next-routes": "^1.4.2",
 		"node-restful": "^0.2.6",
+		"notistack": "^0.8.2",
 		"react": "^16.0.0",
 		"react-dom": "^16.0.0",
+		"react-draft-wysiwyg": "^1.13.2",
 		"react-feather": "^1.1.6",
 		"react-on-screen": "^2.1.1",
+		"react-slick": "^0.24.0",
 		"styled-components": "^4.0.0",
 		"styled-reset": "^2.0.10"
 	},

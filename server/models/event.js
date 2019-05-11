@@ -1,14 +1,8 @@
 const restful = require('node-restful')
 const mongoose = restful.mongoose
 const Schema = mongoose.Schema
-const path = require('path')
-const filePluginLib = require('mongoose-file')
-const filePlugin = filePluginLib.filePlugin
-const makeUpload = filePluginLib.make_upload_to_model
-const root = path.resolve(__dirname, '..', '..')
-const uploadBase = path.join(root, 'static')
-
-console.log(makeUpload)
+const mongooseThumbnailLib = require('mongoose-thumbnail')
+const mongooseThumbnailPlugin = mongooseThumbnailLib.thumbnailPlugin
 
 const eventsSchema = new Schema({
   permalink: { type: String, required: true, unique: true },
@@ -21,9 +15,8 @@ const eventsSchema = new Schema({
   show: { type: Boolean, default: true }
 })
 
-eventsSchema.plugin(filePlugin, {
-  name: 'cover',
-  upload_to: uploadBase
+eventsSchema.plugin(mongooseThumbnailPlugin, {
+  name: 'cover'
 })
 
 module.exports = restful.model('Event', eventsSchema)

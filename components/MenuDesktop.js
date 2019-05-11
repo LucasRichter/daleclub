@@ -8,9 +8,10 @@ import { Flex } from '@rebass/grid'
 
 const Menu = styled.div`
   display: none;
-
   @media ${mediaQueries.laptop} {
     display: block;
+    flex-grow: 1;
+    flex-basis: 0;
   }
 `
 
@@ -22,7 +23,7 @@ const MenuDesktop = ({ links }) =>
     >
       {Object.entries(links).map(([key, value]) => (
         <Link key={key} href={`/${key}`}>
-          <Anchor p='0 20px'>
+          <Anchor>
             {value}
           </Anchor>
         </Link>

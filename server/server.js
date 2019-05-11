@@ -6,11 +6,22 @@ const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 const glob = require('glob')
 const next = require('next')
+const path = require('path')
 
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
 const multer = require('multer')
-const upload = multer()
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    // error first callback
+    cb(null, 'static/uploads')
+  },
+  filename: function (req, file, cb) {
+    // error first callback
+    cb(null, `${Date.now()}_${file.originalname}`)
+  }
+})
+const upload = multer({ storage })
 const routes = require('./routes')
 const routerHandler = routes.getRequestHandler(app)
 
@@ -29,7 +40,8 @@ app.prepare().then(() => {
     next()
   })
   // for parsing multipart/form-data
-  server.use(upload.single('cover'))
+  server.use(upload.any())
+  server.use('/', express.static(path.join(__dirname, '../static')))
 
   // MongoDB
   mongoose.Promise = Promise

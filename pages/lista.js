@@ -1,14 +1,18 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import PageHead from '../components/PageHead'
-import { Box } from '@rebass/grid'
 import SectionTitle from '../components/SectionTitle'
-import FilledInput from '@material-ui/core/FilledInput'
 import InputLabel from '@material-ui/core/InputLabel'
 import MenuItem from '@material-ui/core/MenuItem'
-import FormControl from '@material-ui/core/FormControl'
 import Select from '@material-ui/core/Select'
-import { getEvents } from '../services/eventsServices'
+import { getEvents, postList } from '../services/eventsServices'
+import TextField from '@material-ui/core/TextField'
+import { Flex, Box } from '@rebass/grid'
+import { MinusCircle, PlusCircle } from 'react-feather'
+import Button from '@material-ui/core/Button'
+import moment from 'moment'
+import { H2 } from '../components/Title'
+import FormControl from '@material-ui/core/FormControl'
 
 export default class lista extends Component {
   static propTypes = {
@@ -21,15 +25,18 @@ export default class lista extends Component {
   }
 
   static async getInitialProps({ query: { event } }) {
-    const res = await getEvents()
-    return { events: res.data, event }
+    const events = await getEvents({ lists: true })
+    return { events, event }
   }
 
   state = {
     event: '',
     email: '',
+    current: 1,
     birthday_name: '',
-    names: [],
+    guests: {
+      convidado: ''
+    },
     birthday: ''
   }
 
@@ -37,20 +44,64 @@ export default class lista extends Component {
     const { event, events } = this.props
 
     if (event) {
-      console.log(events, event)
       const find = events.find(e => e.permalink === event)
       if (find) {
-        this.setState({ event: find._id })
+        this.setState({ event: find._id, birthday: moment(find.date).format('YYYY-MM-DD') })
       }
     }
   }
 
-  handleChange = event => {
-    this.setState({ [event.target.name]: event.target.value })
+  onSubmit = async () => {
+    const { guests } = this.state
+
+    this.setState({ loading: true })
+    const names = Object.values(guests).filter(n => n)
+
+    await postList({
+      ...this.state,
+      names
+    })
+    alert('Lista confirmado!')
+  }
+
+  add = () => {
+    const { current, guests } = this.state
+    const next = current + 1
+    this.setState({
+      current: next,
+      guests: {
+        ...guests,
+        [`convidado [${next}]`]: ''
+      }
+    })
+  }
+
+  remove = id => {
+    const guests = { ...this.state.guests }
+    delete guests[id]
+    this.setState({ guests })
+  }
+
+  onChange = e => {
+    e.preventDefault()
+    const { guests } = this.state
+    const { id, name, value } = e.target
+    const key = id || name
+
+    if (key.includes('convidado')) {
+      this.setState({
+        guests: {
+          ...guests,
+          [key]: value
+        }
+      })
+    } else {
+      this.setState({ [key]: value })
+    }
   }
 
   render() {
-    const { event } = this.state
+    const { event, guests, birthday } = this.state
     const { events } = this.props
 
     return (
@@ -61,27 +112,107 @@ export default class lista extends Component {
         />
 
         <Box
-          mt='20px'
-          mx={['20px', '80px']}
+          css={{ backgroundColor: 'white' }}
+          m={['20px 0', '180px 0 0']}
+          p={['20px', '40px 80px']}
         >
           <Box mb='40px'>
             <SectionTitle
-              title='Lista Aniversário'
+              title='Lista'
             />
           </Box>
 
-          <FormControl variant='filled' >
-            <InputLabel htmlFor='event'>Festa</InputLabel>
-            <Select
-              value={event}
-              onChange={this.handleChange}
-              input={<FilledInput name='event' id='event' />}
-            >
-              {events.map(e => (
-                <MenuItem key={e._id} value={e._id}>{e.party}</MenuItem>
-              ))}
-            </Select>
-          </FormControl>
+          <Flex
+            alignItems='center'
+            justifyContent='center'
+            flexDirection='column'
+            mx='auto'
+            css={{ maxWidth: '500px' }}
+          >
+            <H2>
+              Preencha sua lista abaixo:
+            </H2>
+
+            <FormControl style={{ width: '100%' }} >
+              <InputLabel htmlFor='event'>Festa</InputLabel>
+              <Select
+                placeholder='Festa'
+                value={event}
+                onChange={this.onChange}
+                inputProps={{
+                  name: 'event',
+                  id: 'event'
+                }}
+              >
+                {events.map(e => (
+                  <MenuItem key={e._id} value={e._id}>{e.party}</MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+
+            <TextField
+              onChange={this.onChange}
+              autoFocus
+              margin='dense'
+              id='email'
+              label='E-mail'
+              type='email'
+              fullWidth
+            />
+
+            <TextField
+              onChange={this.onChange}
+              margin='dense'
+              id='birthday_name'
+              label='Nome do aniversiarante'
+              fullWidth
+            />
+
+            <TextField
+              margin='dense'
+              id='birthday'
+              onChange={this.onChange}
+              value={birthday}
+              fullWidth
+              label='Data de aniversário'
+              type='date'
+              InputLabelProps={{
+                shrink: true
+              }}
+            />
+
+            {Object.keys(guests).map((key, index) => (
+              <Flex
+                key={key}
+                alignItems='center'
+                justifyContent='center'
+                css={{ width: '100%' }}
+              >
+                <TextField
+                  onChange={this.onChange}
+                  autoFocus
+                  margin='dense'
+                  id={key}
+                  label={`Convidado ${index || ''}`}
+                  fullWidth
+                />
+                {key !== 'convidado' &&
+                <MinusCircle style={{ margin: '0 20px' }} onClick={() => this.remove(key)} />
+                }
+              </Flex>
+            ))
+            }
+            <Button variant='outlined' color='inherit' onClick={this.add} style={{ width: '60%', margin: '20px auto 0' }}>
+              <PlusCircle style={{ margin: '0 20px' }} /> Adicionar convidado
+            </Button>
+
+            <Box mt='20px'>
+              <Button variant='contained' onClick={this.onSubmit} color='primary' size='large'>
+                Enviar lista
+              </Button>
+            </Box>
+          </Flex>
+
         </Box>
 
       </main>

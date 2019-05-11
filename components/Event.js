@@ -19,6 +19,7 @@ const Container = styled(Box)`
   transition: all .300s ease-in;
   transform: translateY(20%);
   opacity: 0;
+  white-space: nowrap;
 
   ${p => p.show && css`
     opacity: 1;
@@ -65,7 +66,7 @@ export default class Event extends Component {
 
     return (
       <Container
-        m='20px'
+        m='5px'
         show={this.state.show}
       >
         <Link
@@ -89,7 +90,7 @@ export default class Event extends Component {
               </Text>
             </Box>
             <Image
-              src={cover}
+              src={`/${cover.path}`}
               alt={party}
             />
           </EventMain>

@@ -23,7 +23,7 @@ const StyledTitle = styled(H2)`
           ? colors.sea
           : p.dark
             ? colors.dark
-            : 'black'};
+            : '#292929'};
 
     ::after {
       content: '';
@@ -36,7 +36,7 @@ const StyledTitle = styled(H2)`
           ? colors.sea
           : p.dark
             ? colors.dark
-            : 'black'};
+            : '#292929'};
       display: block;
       height: 2px;
       width: 0;
