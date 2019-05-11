@@ -14,10 +14,7 @@ const StyledHeader = styled.header`
   text-align: center;
 
   @media ${mediaQueries.laptop} {
-    position: absolute;
-    z-index: 99;
-    top: 20px;
-    padding: 0 80px;
+    padding: 20px 80px;
     box-sizing: border-box;
     width: 100%;
   }
@@ -33,7 +30,13 @@ export default () => (
   <StyledHeader>
     <MenuMobile links={links} />
 
-    <Box m='0 auto' css={{ flexGrow: 1, flexBasis: 0 }}>
+    <Box
+      m='0 auto'
+      pl={[
+        '0',
+        '280px'
+      ]}
+    >
       <Link href='/'>
         <Logo />
       </Link>

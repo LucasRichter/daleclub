@@ -7,6 +7,15 @@ import SectionTitle from '../components/SectionTitle'
 import GuestForm from '../components/GuestForm'
 import { getEvents } from '../services/eventsServices'
 import Slider from 'react-slick'
+import styled from 'styled-components'
+
+const Slide = styled.div`
+  min-height: 350px;
+  background-image: url(${p => p.url});
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+`
 
 class IndexPage extends Component {
   static propTypes = {
@@ -32,6 +41,8 @@ class IndexPage extends Component {
     var settings = {
       dots: true,
       infinite: true,
+      arrows: false,
+      lazyLoad: 'ondemand',
       autoplay: true,
       speed: 500,
       slidesToShow: 1,
@@ -46,11 +57,8 @@ class IndexPage extends Component {
         />
 
         <Slider {...settings}>
-          <img src='https://scontent.fpoa4-1.fna.fbcdn.net/v/t1.0-9/45455281_2281206948616163_7889246965836283904_o.jpg?_nc_cat=111&_nc_ht=scontent.fpoa4-1.fna&oh=4e462d442f142f308cff2b25f73e91b3&oe=5D6C31F6' />
-          <img src='https://scontent.fpoa4-1.fna.fbcdn.net/v/t1.0-9/45455281_2281206948616163_7889246965836283904_o.jpg?_nc_cat=111&_nc_ht=scontent.fpoa4-1.fna&oh=4e462d442f142f308cff2b25f73e91b3&oe=5D6C31F6' />
-          <img src='https://scontent.fpoa4-1.fna.fbcdn.net/v/t1.0-9/45455281_2281206948616163_7889246965836283904_o.jpg?_nc_cat=111&_nc_ht=scontent.fpoa4-1.fna&oh=4e462d442f142f308cff2b25f73e91b3&oe=5D6C31F6' />
-          <img src='https://scontent.fpoa4-1.fna.fbcdn.net/v/t1.0-9/45455281_2281206948616163_7889246965836283904_o.jpg?_nc_cat=111&_nc_ht=scontent.fpoa4-1.fna&oh=4e462d442f142f308cff2b25f73e91b3&oe=5D6C31F6' />
-          <img src='https://scontent.fpoa4-1.fna.fbcdn.net/v/t1.0-9/45455281_2281206948616163_7889246965836283904_o.jpg?_nc_cat=111&_nc_ht=scontent.fpoa4-1.fna&oh=4e462d442f142f308cff2b25f73e91b3&oe=5D6C31F6' />
+          <Slide url='https://scontent.fpoa4-1.fna.fbcdn.net/v/t1.0-9/45455281_2281206948616163_7889246965836283904_o.jpg?_nc_cat=111&_nc_ht=scontent.fpoa4-1.fna&oh=4e462d442f142f308cff2b25f73e91b3&oe=5D6C31F6' />
+          <Slide url='https://scontent.fpoa4-1.fna.fbcdn.net/v/t1.0-9/45455281_2281206948616163_7889246965836283904_o.jpg?_nc_cat=111&_nc_ht=scontent.fpoa4-1.fna&oh=4e462d442f142f308cff2b25f73e91b3&oe=5D6C31F6' />
         </Slider>
 
         <Box
@@ -67,6 +75,7 @@ class IndexPage extends Component {
 
           <Flex
             alignItems='flex-start'
+            justifyContent='space-between'
             flexWrap='wrap'
 
           >

@@ -1,5 +1,5 @@
 // pages/_app.js
-import React, {Fragment} from 'react'
+import React from 'react'
 import App, { Container } from 'next/app'
 import Header from '../components/Header'
 import Reset from 'styled-reset'
@@ -8,6 +8,7 @@ import moment from 'moment'
 import SocialMedias from '../components/SocialLinks'
 import Footer from '../components/Footer'
 import axios from 'axios'
+import { SnackbarProvider } from 'notistack'
 
 axios.defaults.baseURL = process.env.API_DOMAIN
 
@@ -58,7 +59,7 @@ class MyApp extends App {
     const { Component, pageProps } = this.props
     const render = typeof window !== 'undefined'
     return (
-      <Fragment>
+      <SnackbarProvider maxSnack={3}>
         <GlobalStyle />
         <Container>
           <Header />
@@ -66,7 +67,7 @@ class MyApp extends App {
           <SocialMedias />
           <Footer />
         </Container>
-      </Fragment>
+      </SnackbarProvider>
     )
   }
 }

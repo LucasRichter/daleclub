@@ -9,10 +9,12 @@ import DialogTitle from '@material-ui/core/DialogTitle'
 import { PlusCircle, MinusCircle } from 'react-feather'
 import { Flex } from '@rebass/grid'
 import { postGuest } from '../services/eventsServices'
+import { withSnackbar } from 'notistack'
 
-export default class GuestForm extends React.Component {
+class GuestForm extends React.Component {
   static propTypes = {
     party: PropTypes.string.isRequired,
+    enqueueSnackbar: PropTypes.func.isRequired,
     open: PropTypes.bool,
     onClose: PropTypes.func
   }
@@ -27,7 +29,7 @@ export default class GuestForm extends React.Component {
   }
 
   onSubmit = async () => {
-    const { party, onClose } = this.props
+    const { party, onClose, enqueueSnackbar } = this.props
     const { email, guests } = this.state
 
     this.setState({ loading: true })
@@ -40,7 +42,7 @@ export default class GuestForm extends React.Component {
 
     await postGuest(data)
     onClose()
-    alert('Nome confirmado!')
+    enqueueSnackbar(`Nome${names.length > 1 ? 's' : ''} adicionado a lista :)`, { variant: 'success' })
   }
 
   add = () => {
@@ -85,6 +87,7 @@ export default class GuestForm extends React.Component {
   render() {
     const { open, onClose } = this.props
     const { guests } = this.state
+
     return (
       <Dialog
         open={open}
@@ -104,12 +107,11 @@ export default class GuestForm extends React.Component {
             fullWidth
           />
           {Object.keys(guests).map((key, index) => (
-            <Flex alignItems='center' justifyContent='center'>
+            <Flex alignItems='center' key={key} justifyContent='center'>
               <TextField
                 onChange={this.onChange}
                 autoFocus
                 margin='dense'
-                key={key}
                 id={key}
                 label={`Nome ${index || ''}`}
                 fullWidth
@@ -136,3 +138,5 @@ export default class GuestForm extends React.Component {
     )
   }
 }
+
+export default withSnackbar(GuestForm)

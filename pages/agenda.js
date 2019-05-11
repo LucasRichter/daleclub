@@ -9,6 +9,11 @@ import SectionTitle from '../components/SectionTitle'
 import styled from 'styled-components'
 import mediaQueries from '../helpers/mediaQueries'
 import GuestForm from '../components/GuestForm'
+import {
+  TwitterShareButton,
+  TwitterIcon
+} from 'react-share'
+import moment from 'moment'
 
 const Image = styled.img`
   max-width: 100%;
@@ -38,7 +43,7 @@ class Agenda extends Component {
 
   render () {
     const { event } = this.props
-    const { _id, party, description, cover, permalink, edition, lists, guests } = event
+    const { _id, party, description, cover, permalink, edition, lists, guests, date } = event
 
     return (
       <main>
@@ -49,7 +54,6 @@ class Agenda extends Component {
 
         <Flex
           css={{ backgroundColor: 'white' }}
-          m={['20px 0', '180px 0 0']}
           p={['20px', '40px 80px']}
           flexDirection={['column', 'row']}
         >
@@ -75,16 +79,28 @@ class Agenda extends Component {
             mt={['20px', '0']}
             mx={['0', '30px']}
           >
-            <Box css={{ workBreak: 'break-all' }}>
+            <Box>
               <SectionTitle
                 bottom
                 title={`${party} // ${edition}`}
               />
 
+              <Flex mt='20px'>
+                <TwitterShareButton
+                  url={document.location.href}
+                  via='daleclub'
+                  title={`${party} // ${edition} ${moment(date).format('ddd DD [de] MMMM')}`}
+                >
+                  <TwitterIcon
+                    size={32}
+                    round />
+                </TwitterShareButton>
+              </Flex>
+
               <Text
                 m='20px 0'
                 opaque
-                style={{ wordBreak: 'break-all' }}
+                style={{ wordBreak: 'break-all', whiteSpace: 'pre-line' }}
               >
                 {description}
               </Text>

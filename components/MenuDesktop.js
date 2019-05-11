@@ -10,8 +10,7 @@ const Menu = styled.div`
   display: none;
   @media ${mediaQueries.laptop} {
     display: block;
-    flex-grow: 1;
-    flex-basis: 0;
+    width: 300px;
   }
 `
 

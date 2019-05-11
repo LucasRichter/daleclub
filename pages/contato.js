@@ -16,7 +16,7 @@ class IndexPage extends Component {
 
         <Box
           mt='40px'
-          p={['20px', '200px 80px 40px']}
+          p={['20px', '0 80px']}
         >
           <Box mb='40px'>
             <SectionTitle

@@ -26,7 +26,6 @@ class IndexPage extends Component {
 
         <Box
           css={{ backgroundColor: 'white' }}
-          m={['20px 0', '180px 0 0']}
           p={['20px', '40px 80px']}
         >
           <Box mb='40px'>

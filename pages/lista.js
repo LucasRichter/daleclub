@@ -13,11 +13,13 @@ import Button from '@material-ui/core/Button'
 import moment from 'moment'
 import { H2 } from '../components/Title'
 import FormControl from '@material-ui/core/FormControl'
+import { withSnackbar } from 'notistack'
 
-export default class lista extends Component {
+class lista extends Component {
   static propTypes = {
     event: PropTypes.string,
-    events: PropTypes.array
+    events: PropTypes.array,
+    enqueueSnackbar: PropTypes.object
   }
 
   static defaultProps = {
@@ -53,6 +55,7 @@ export default class lista extends Component {
 
   onSubmit = async () => {
     const { guests } = this.state
+    const { enqueueSnackbar } = this.props
 
     this.setState({ loading: true })
     const names = Object.values(guests).filter(n => n)
@@ -61,7 +64,7 @@ export default class lista extends Component {
       ...this.state,
       names
     })
-    alert('Lista confirmado!')
+    enqueueSnackbar('Nome na lista confirmado!', { variant: 'success' })
   }
 
   add = () => {
@@ -113,7 +116,6 @@ export default class lista extends Component {
 
         <Box
           css={{ backgroundColor: 'white' }}
-          m={['20px 0', '180px 0 0']}
           p={['20px', '40px 80px']}
         >
           <Box mb='40px'>
@@ -219,3 +221,5 @@ export default class lista extends Component {
     )
   }
 }
+
+export default withSnackbar(lista)

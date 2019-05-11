@@ -12,7 +12,7 @@ const setFile = (req, res, next) => {
 
 Event.methods(['get', 'post', 'put', 'delete'])
 Event.updateOptions({ new: true, runValidators: true })
-Event.before('post', setFile).before('put', setFile)
+Event.before('post', [helpers.validateJwt, setFile]).before('put', [helpers.validateJwt, setFile])
 Event.after('post', helpers.formatResponse).after('put', helpers.formatResponse)
 
 module.exports = function (server) {
