@@ -10,7 +10,7 @@ import Slider from 'react-slick'
 import styled from 'styled-components'
 
 const Slide = styled.div`
-  min-height: 350px;
+  min-height: 150px;
   background-image: url(${p => p.url});
   width: 100%;
   background-size: cover;
@@ -63,7 +63,7 @@ class IndexPage extends Component {
 
         <Box
           mt='20px'
-          mx={['20px', '80px']}
+          mx={['20px', '200px']}
         >
 
           <Box mb='40px'>
@@ -75,7 +75,7 @@ class IndexPage extends Component {
 
           <Flex
             alignItems='flex-start'
-            justifyContent='space-between'
+            justifyContent={['center', 'space-between']}
             flexWrap='wrap'
 
           >

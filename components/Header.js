@@ -14,7 +14,7 @@ const StyledHeader = styled.header`
   text-align: center;
 
   @media ${mediaQueries.laptop} {
-    padding: 20px 80px;
+    padding: 20px 200px;
     box-sizing: border-box;
     width: 100%;
   }
