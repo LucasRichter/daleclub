@@ -4,7 +4,7 @@ import PageHead from '../components/PageHead'
 import { Flex, Box } from '@rebass/grid'
 import Button from '@material-ui/core/Button'
 import Axios from 'axios'
-import Text from '../components/Text'
+import JsxParser from 'react-jsx-parser'
 import SectionTitle from '../components/SectionTitle'
 import styled from 'styled-components'
 import mediaQueries from '../helpers/mediaQueries'
@@ -41,6 +41,12 @@ class Agenda extends Component {
     return { event: res.data[0] }
   }
 
+  createMarkup = () => {
+    return {
+      _html: this.props.event.description
+    }
+  }
+
   render () {
     const { event } = this.props
     const { _id, party, description, cover, permalink, edition, lists, guests, date } = event
@@ -49,7 +55,6 @@ class Agenda extends Component {
       <main>
         <PageHead
           title={`Daleclub | ${party}`}
-          description={description}
         />
 
         <Flex
@@ -97,13 +102,12 @@ class Agenda extends Component {
                 </TwitterShareButton>
               </Flex>
 
-              <Text
-                m='20px 0'
-                opaque
-                style={{ wordBreak: 'break-all', whiteSpace: 'pre-line' }}
-              >
-                {description}
-              </Text>
+              {description &&
+              <JsxParser
+                jsx={description}
+              />
+              }
+
             </Box>
           </Box>
 

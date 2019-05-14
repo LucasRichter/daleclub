@@ -11,7 +11,7 @@ const StyledFooter = styled.footer`
   text-align: center;
 
   @media ${mediaQueries.laptop} {
-    margin: 20px 60px 0 80px;
+    padding: 40px 200px 80px;
   }
 `
 
@@ -19,7 +19,7 @@ const Footer = () =>
   <StyledFooter>
     <Logo />
     <Text color='white'>
-      © 2019 Daleclub, Todos os direitos reservados | Design e Desenvolvimento: Lucas Richter
+      © 2019 Daleclub, Todos os direitos reservados
     </Text>
   </StyledFooter>
 

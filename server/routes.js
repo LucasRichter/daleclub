@@ -7,9 +7,12 @@ const routesImplementation = routes()
 //   .add('showBlogPostRoute', '/blog/:slug', 'blogShow')
 
 routesImplementation.add('/admin', 'admin')
-routesImplementation.add('/:id', 'index')
-routesImplementation.add('/lista', 'lista')
+routesImplementation.add('/admin/dashboard/:resource', 'admin/dashboard')
+routesImplementation.add('/admin/dashboard/:resource/:action', 'admin/dashboard')
+routesImplementation.add('/admin/dashboard/:resource/:action/:id', 'admin/dashboard')
+
 routesImplementation.add('/lista/:event', 'lista')
+routesImplementation.add('/agenda/:id', 'agenda')
 
 module.exports = routesImplementation
 

@@ -74,16 +74,15 @@ class IndexPage extends Component {
           <Box my='20px'>
             <TextField
               onChange={this.onChange}
-              autoFocus
               margin='dense'
               id='password'
               type='password'
               label='Senha'
             />
           </Box>
-          <Button variant='contained' onClick={this.onSubmit} color='primary' size='large'>
+          `<Button variant='contained' onClick={this.onSubmit} color='primary' size='large'>
                 Entrar
-          </Button>
+          </Button>`
         </Box>
 
       </main>

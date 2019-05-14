@@ -14,7 +14,7 @@ const StyledHeader = styled.header`
   text-align: center;
 
   @media ${mediaQueries.laptop} {
-    padding: 0 200px;
+    padding: 20px 200px;
     box-sizing: border-box;
     width: 100%;
   }
@@ -23,6 +23,8 @@ const StyledHeader = styled.header`
 const links = {
   contato: 'Contato',
   aniversarios: 'Aniversários',
+  acasa: 'A casa',
+  formatura: 'Formatura/100 dias',
   fotos: 'Fotos'
 }
 
@@ -31,11 +33,10 @@ export default () => (
     <MenuMobile links={links} />
 
     <Box
-      m='0 auto'
-      pl={[
-        '0',
-        '280px'
-      ]}
+      css={{
+        flexGrow: 1,
+        flexBasis: 0
+      }}
     >
       <Link href='/'>
         <Logo />

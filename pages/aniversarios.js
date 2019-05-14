@@ -11,8 +11,9 @@ const Image = styled.div`
   background-image: url(http://www.sinnersclub.com.br/uploads/event/cover_image/706/main_cartaz.png);
   background-size: cover;
   background-position: center;
-  flex-grow: 1;
-  flex-basis: 0;
+  width: 400px;
+  max-width: 100%;
+  height: 400px;
 `
 
 class IndexPage extends Component {
@@ -35,19 +36,26 @@ class IndexPage extends Component {
             />
           </Box>
 
-          <Flex>
-            <Image />
+          <Flex flexDirection={['column', 'row']}>
 
-            <Box ml='20px' css={{ flexGrow: 1, flexBasis: 0 }}>
+            <Box mb={['20px', '']}>
+              <Image />
+            </Box>
+
+            <Box ml='20px' >
               <Text m='0 0 20px'>
                 Quer comemorar teu aniver com a gente? Tu pode contar com as seguintes vantagens enviando uma lista:
               </Text>
 
-              <Text m='0 0 20px'>
-                - Aniversariante (data de aniverário 3 dias antes ou depois da festa): FREE
+              <Text bold >
+                - Aniversariante (data de aniverário 3 dias antes ou depois da festa):
               </Text>
 
               <Text m='0 0 20px'>
+                FREE
+              </Text>
+
+              <Text bold m='0 0 20px'>
     - Convidados (lista com até 15 amigos) tem entrada preferêncial e preço de lista sem limite de horário!
               </Text>
 
@@ -55,20 +63,36 @@ class IndexPage extends Component {
     A lista deve ser enviada até as 20h do dia da festa escolhida.
               </Text>
 
-              <Text m='0 0 20px'>
-    - "O ANIVERSARIANTE TEM FILA PREFERENCIAL?": Sim. Os convidados também.
+              <Text bold>
+    - "O ANIVERSARIANTE TEM FILA PREFERENCIAL?":
               </Text>
 
               <Text m='0 0 20px'>
-    - "TENHO DIREITO A UM ACOMPANHANTE FREE?": Tem, é só chegar na hora!
+              Sim. Os convidados também.
+              </Text>
+
+              <Text bold >
+    - "TENHO DIREITO A UM ACOMPANHANTE FREE?":
               </Text>
 
               <Text m='0 0 20px'>
-    - "MEU FREE VALE ATÉ QUE HORÁRIO?": Até duas e meia!
+Tem, é só chegar na hora!
+              </Text>
+
+              <Text bold >
+    - "MEU FREE VALE ATÉ QUE HORÁRIO?":
               </Text>
 
               <Text m='0 0 20px'>
-    - "TENHO Q CHEGAR ANTES DOS MEUS CONVIDADOS?": Não precisa.
+              Até duas e meia!
+              </Text>
+
+              <Text bold >
+    - "TENHO Q CHEGAR ANTES DOS MEUS CONVIDADOS?":
+              </Text>
+
+              <Text m='0 0 20px'>
+              Não precisa.
               </Text>
 
               <Text m='0 0 20px'>
@@ -81,7 +105,7 @@ class IndexPage extends Component {
 
               <Link href='/lista'>
                 <Button color='secondary' variant='contained' size='large'>
-                  Enviar lista de aniversário
+                  Enviar lista
                 </Button>
               </Link>
             </Box>

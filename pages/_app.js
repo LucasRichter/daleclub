@@ -25,8 +25,11 @@ const GlobalStyle = createGlobalStyle`
 
 
   * {
-    font-family: 'Montserrat', sans-serif !important;
     line-height: 1.6 !important;
+  }
+
+  .jsx-parser {
+    font-family: 'Work Sans', sans-serif !important;
   }
 
   html {

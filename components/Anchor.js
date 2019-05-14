@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import colors from '../helpers/colors'
 
 export default styled.a`
   color: white;
@@ -9,9 +8,9 @@ export default styled.a`
   font-weight: bold;
   font-family: 'Work Sans';
   cursor: pointer;
-  transition: color .125s ease-in-out;
+  transition: opacity .125s ease-in-out;
 
   &:hover {
-    color: ${colors.purpleLight};
+    opacity: .6;
   }
 `

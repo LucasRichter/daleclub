@@ -4,7 +4,7 @@ const helpers = require('../services/helpers')
 const User = require('../models/user')
 User.methods(['get', 'post', 'put', 'delete'])
 User.updateOptions({ new: true, runValidators: true })
-User.before('post', helpers.validateJwt).before('put', helpers.validateJwt)
+User.before('post', helpers.validateJwt).before('put', helpers.validateJwt).before('delete', helpers.validateJwt)
 User.after('post', helpers.formatResponse).after('put', helpers.formatResponse)
 
 module.exports = function (server) {

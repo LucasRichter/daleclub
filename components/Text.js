@@ -23,7 +23,7 @@ const Text = styled.p`
   `}
 
   ${({ bold }) => bold && css`
-    font-weight: 600;
+    font-weight: bold;
   `}
 
   ${({ opaque }) => opaque && css`
