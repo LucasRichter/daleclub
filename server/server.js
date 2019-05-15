@@ -30,7 +30,7 @@ const secure = require('express-force-https')
 
 app.prepare().then(() => {
   if (!dev) {
-    app.use(secure)
+    server.use(secure)
   }
   // Parse application/x-www-form-urlencoded
   server.use(bodyParser.urlencoded({ extended: false }))
