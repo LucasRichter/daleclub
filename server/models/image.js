@@ -5,7 +5,7 @@ const mongooseThumbnailLib = require('mongoose-thumbnail')
 const mongooseThumbnailPlugin = mongooseThumbnailLib.thumbnailPlugin
 
 const eventsSchema = new Schema({
-  show: { type: Boolean, default: true }
+  carousel: { type: Boolean, default: true }
 })
 
 eventsSchema.plugin(mongooseThumbnailPlugin, {

@@ -25,7 +25,8 @@ const Image = styled.img`
 
 class Agenda extends Component {
   static propTypes = {
-    event: PropTypes.object.isRequired
+    event: PropTypes.object.isRequired,
+    currentConfig: PropTypes.object.isRequired
   }
 
   static defaultProps = {
@@ -41,14 +42,8 @@ class Agenda extends Component {
     return { event: res.data[0] }
   }
 
-  createMarkup = () => {
-    return {
-      _html: this.props.event.description
-    }
-  }
-
   render () {
-    const { event } = this.props
+    const { event, currentConfig } = this.props
     const { _id, party, description, cover, permalink, edition, lists, guests, date } = event
 
     return (
@@ -93,7 +88,7 @@ class Agenda extends Component {
               <Flex mt='20px'>
                 <TwitterShareButton
                   url={document.location.href}
-                  via='daleclub'
+                  via={currentConfig.twitter_mention}
                   title={`${party} // ${edition} ${moment(date).format('ddd DD [de] MMMM')}`}
                 >
                   <TwitterIcon

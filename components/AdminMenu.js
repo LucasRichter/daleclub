@@ -4,11 +4,13 @@ import { withStyles } from '@material-ui/core/styles'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
+import { Users, Settings, Gift, List as ListIcon, User, Image } from 'react-feather'
+import { ListItemIcon } from '@material-ui/core'
 
 const styles = theme => ({
   root: {
     width: '100%',
-    maxWidth: 220,
+    maxWidth: 300,
     backgroundColor: theme.palette.background.paper
   }
 })
@@ -18,7 +20,25 @@ function ListItemLink(props) {
 }
 
 const links = {
-  events: 'Eventos'
+  events: 'Eventos',
+  guests: 'Nomes',
+  images: 'Galeria',
+  lists: 'Listas aniversários',
+  users: 'Usuários',
+  config: 'Configurações'
+}
+
+const icons = {
+  images: <Image />,
+  events: <Gift />,
+  guests: <User />,
+  lists: <ListIcon />,
+  users: <Users />,
+  config: <Settings />
+}
+
+const hrefs = {
+  config: 'config/edit/current'
 }
 
 function AdminList(props) {
@@ -27,7 +47,10 @@ function AdminList(props) {
     <div className={classes.root}>
       <List component='nav'>
         {Object.entries(links).map(([ key, value ]) => (
-          <ListItemLink key={key} href={`/admin/dashboard/${key}`}>
+          <ListItemLink key={key} href={`/admin/dashboard/${hrefs[key] || key}`}>
+            <ListItemIcon>
+              {icons[key]}
+            </ListItemIcon>
             <ListItemText primary={value} />
           </ListItemLink>
         ))}

@@ -50,10 +50,12 @@ const GlobalStyle = createGlobalStyle`
 
 class MyApp extends App {
   static async getInitialProps ({ Component, ctx }) {
+    const res = await axios.get('/api/config/current')
     return {
       pageProps: {
         // Call page-level getInitialProps
-        ...(Component.getInitialProps ? await Component.getInitialProps(ctx) : {})
+        currentConfig: res.data,
+        ...(Component.getInitialProps ? await Component.getInitialProps({ ...ctx, currentConfig: res.data }) : {})
       }
     }
   }
@@ -67,7 +69,7 @@ class MyApp extends App {
         <Container>
           <Header />
           {render && <Component {...pageProps} />}
-          <SocialMedias />
+          {render && !window.location.href.includes('admin') && <SocialMedias {...pageProps} />}
           <Footer />
         </Container>
       </SnackbarProvider>

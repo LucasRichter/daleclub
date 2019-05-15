@@ -9,6 +9,7 @@ const StyledFooter = styled.footer`
   justify-content: space-between;
   align-items: center;
   text-align: center;
+  padding: 0 20px 20px;
 
   @media ${mediaQueries.laptop} {
     padding: 40px 200px 80px;

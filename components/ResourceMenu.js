@@ -5,6 +5,7 @@ import MenuItem from '@material-ui/core/MenuItem'
 import PropTypes from 'prop-types'
 import { MoreVertical } from 'react-feather'
 import Axios from 'axios'
+import Anchor from './Anchor'
 
 class ResourceMenu extends Component {
   static propTypes = {
@@ -31,7 +32,7 @@ class ResourceMenu extends Component {
 
     if (deleted) {
       await Axios.delete(`/api/${resource}/${item._id}`, { headers: this.headers })
-      Router.push(`/admin/dashboard/${resource}/all`)
+      Router.push(`/admin/dashboard/${resource}`)
     }
   }
 
@@ -39,7 +40,7 @@ class ResourceMenu extends Component {
     const { resource, extraMenus, item } = this.props
     return [
       {
-        onClick: () => Router.push(`/admin/dashboard/${resource}/edit/${item._id}`),
+        link: `/admin/dashboard/${resource}/edit/${item._id}`,
         text: 'Editar'
       },
       {
@@ -48,6 +49,14 @@ class ResourceMenu extends Component {
       },
       ...extraMenus
     ]
+  }
+
+  getLink = link => {
+    if (typeof link === 'function') {
+      return link(this.props.item)
+    }
+
+    return link
   }
 
   handleClick = event => {
@@ -60,7 +69,7 @@ class ResourceMenu extends Component {
 
   render() {
     const { anchorEl } = this.state
-
+    const { item } = this.props
     return (
       <Fragment>
         <MoreVertical
@@ -74,10 +83,12 @@ class ResourceMenu extends Component {
           onClose={this.handleClose}
         >
           {this.menus.map(menu => (
-            <MenuItem key={menu.text} onClick={() => {
-              this.handleClose()
-              menu && menu.onClick()
-            }}>{menu.text}</MenuItem>
+            <Anchor href={this.getLink(menu.link)} target={menu.target} >
+              <MenuItem key={menu.text} onClick={() => {
+                this.handleClose()
+                menu.onClick && menu.onClick(item)
+              }}>{menu.text}</MenuItem>
+            </Anchor>
           ))}
         </Menu>
       </Fragment>

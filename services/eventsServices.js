@@ -4,7 +4,6 @@ export const getEvents = async (filters = {}) => {
   const params = {
     sort: 'date',
     show: true,
-    limit: 4,
     ...filters
   }
   const res = await Axios('/api/events', { params })

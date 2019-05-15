@@ -16,6 +16,8 @@ import toFormData from 'json-form-data'
 import difference from '../helpers/difference'
 
 const Container = styled(Box)`
+  width: 100%;
+
   .demo-editor {
     height: 275px !important;
     border: 1px solid #F1F1F1 !important;
@@ -69,7 +71,7 @@ export default class AdminForm extends Component {
     const defaultProps = {
       margin: 'dense',
       id: id,
-      placeholder: label,
+      label,
       type: type || 'text',
       onChange: this.onChange,
       error: errors[id],
@@ -123,7 +125,7 @@ export default class AdminForm extends Component {
     const { resource } = this.props
 
     return fields[resource].map(field => (
-      <Box m='20px 40px' >
+      <Box m='20px' css={{ width: '100%' }} >
         {this.getField(field)}
       </Box>
     ))
@@ -187,7 +189,7 @@ export default class AdminForm extends Component {
   render() {
     const { resource } = this.props
     return (
-      <Container>
+      <Container mx='40px'>
         <H2>
           {resource}
         </H2>

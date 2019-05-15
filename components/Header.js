@@ -10,12 +10,14 @@ import Logo from './Logo'
 const StyledHeader = styled.header`
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   text-align: center;
+  padding: 20px 20px 0;
 
   @media ${mediaQueries.laptop} {
     padding: 20px 200px;
     box-sizing: border-box;
+    align-items: center;
     width: 100%;
   }
 `
@@ -33,10 +35,8 @@ export default () => (
     <MenuMobile links={links} />
 
     <Box
-      css={{
-        flexGrow: 1,
-        flexBasis: 0
-      }}
+      mr={['0', 'auto']}
+      ml={['auto', '0']}
     >
       <Link href='/'>
         <Logo />

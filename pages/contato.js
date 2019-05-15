@@ -4,8 +4,13 @@ import { Box } from '@rebass/grid'
 import SectionTitle from '../components/SectionTitle'
 import Text from '../components/Text'
 import Anchor from '../components/Anchor'
+import PropTypes from 'prop-types'
 
 class IndexPage extends Component {
+  static propTypes = {
+    currentConfig: PropTypes.object
+  }
+
   render () {
     return (
       <main>
@@ -29,7 +34,7 @@ class IndexPage extends Component {
             <Anchor
               fontSize='12px'
               lower
-              href='mailto:contato@sinnersclub.com.br'
+              href={`mailto:${this.props.currentConfig.contact_email}`}
             >
               contato@sinnersclub.com.br
             </Anchor>

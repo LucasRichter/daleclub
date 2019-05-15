@@ -3,21 +3,8 @@ import React from 'react'
 import { Twitter, Instagram, Facebook } from 'react-feather'
 import { Box } from '@rebass/grid'
 import mediaQueries from '../helpers/mediaQueries'
+import PropTypes from 'prop-types'
 
-const links = [
-  {
-    link: 'https://twitter.com/SinnersPOA',
-    Icon: Twitter
-  },
-  {
-    link: 'https://www.instagram.com/instasinners/',
-    Icon: Instagram
-  },
-  {
-    link: 'https://www.facebook.com/WelcomeToSinners',
-    Icon: Facebook
-  }
-]
 const StyledSocial = styled(Box)`
   display: none;
 
@@ -29,15 +16,27 @@ const StyledSocial = styled(Box)`
   }
 `
 
-const SocialMedias = () =>
+const SocialMedias = ({ currentConfig }) =>
   <StyledSocial>
-    {links.map(({ Icon, link }) => (
-      <Box key={link} mb='20px'>
-        <a href={link} target='_blank'>
-          <Icon color='#55CBDC' />
-        </a>
-      </Box>
-    ))}
+    <Box mb='20px'>
+      <a href={currentConfig.twitter} target='_blank'>
+        <Twitter color='#55CBDC' />
+      </a>
+    </Box>
+    <Box mb='20px'>
+      <a href={currentConfig.instagram} target='_blank'>
+        <Instagram color='#55CBDC' />
+      </a>
+    </Box>
+    <Box mb='20px'>
+      <a href={currentConfig.facebook} target='_blank'>
+        <Facebook color='#55CBDC' />
+      </a>
+    </Box>
   </StyledSocial>
+
+SocialMedias.propTypes = {
+  currentConfig: PropTypes.object
+}
 
 export default SocialMedias

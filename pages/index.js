@@ -8,6 +8,7 @@ import GuestForm from '../components/GuestForm'
 import { getEvents } from '../services/eventsServices'
 import Slider from 'react-slick'
 import styled from 'styled-components'
+import { getCarouselImages } from '../services/homeServices'
 
 const Slide = styled.div`
   min-height: 120px;
@@ -19,16 +20,19 @@ const Slide = styled.div`
 
 class IndexPage extends Component {
   static propTypes = {
-    events: PropTypes.array.isRequired
+    events: PropTypes.array.isRequired,
+    images: PropTypes.array.isRequired
   }
 
   static defaultProps = {
-    events: []
+    events: [],
+    images: []
   }
 
-  static async getInitialProps () {
-    const events = await getEvents()
-    return { events }
+  static async getInitialProps ({ currentConfig }) {
+    const events = await getEvents({ limit: currentConfig.number_events })
+    const images = await getCarouselImages()
+    return { events, images }
   }
 
   state = {
@@ -37,7 +41,7 @@ class IndexPage extends Component {
   }
 
   render () {
-    const { events } = this.props
+    const { events, images } = this.props
     var settings = {
       dots: true,
       infinite: true,
@@ -57,8 +61,9 @@ class IndexPage extends Component {
         />
 
         <Slider {...settings}>
-          <Slide url='https://scontent.fpoa4-1.fna.fbcdn.net/v/t1.0-9/45455281_2281206948616163_7889246965836283904_o.jpg?_nc_cat=111&_nc_ht=scontent.fpoa4-1.fna&oh=4e462d442f142f308cff2b25f73e91b3&oe=5D6C31F6' />
-          <Slide url='https://scontent.fpoa4-1.fna.fbcdn.net/v/t1.0-9/45455281_2281206948616163_7889246965836283904_o.jpg?_nc_cat=111&_nc_ht=scontent.fpoa4-1.fna&oh=4e462d442f142f308cff2b25f73e91b3&oe=5D6C31F6' />
+          {images.map(image => (
+            <Slide key={image._id} url={image.file && `/${image.file.path}`} />
+          ))}
         </Slider>
 
         <Box

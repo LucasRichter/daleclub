@@ -6,10 +6,10 @@ import { withSnackbar } from 'notistack'
 import Axios from 'axios'
 import PropTypes from 'prop-types'
 import Table from '../../components/Table'
-import { columns } from '../../helpers/adminResources'
+import * as resources from '../../helpers/adminResources'
 import AdminMenu from '../../components/AdminMenu'
 import { Button } from '@material-ui/core'
-import { H2 } from '../../components/Title'
+import { H2, H1 } from '../../components/Title'
 import ResourceMenu from '../../components/ResourceMenu'
 import AdminForm from '../../components/AdminForm'
 
@@ -29,15 +29,15 @@ class IndexPage extends Component {
 
   static async getInitialProps ({ query: { id, resource, action } }) {
     let items, item
-
+    let params = resources.params[resource] || {}
     if (resource) {
       if (!action) {
-        const res = await Axios.get(`/api/${resource}`)
+        const res = await Axios.get(`/api/${resource}`, { params })
         items = res.data
       }
 
       if (id) {
-        const res = await Axios.get(`/api/${resource}/${id}`)
+        const res = await Axios.get(`/api/${resource}/${id}`, { params })
         item = res.data
       }
     }
@@ -49,7 +49,7 @@ class IndexPage extends Component {
     const { resource, action, items, item, enqueueSnackbar } = this.props
 
     if (!resource) {
-      return 'Dashboard'
+      return <H1>Dashboard</H1>
     }
 
     switch (action) {
@@ -89,10 +89,10 @@ class IndexPage extends Component {
             </Flex>
             <Table
               columns={[
-                ...columns[resource],
+                ...resources.columns[resource],
                 {
                   title: 'Ações',
-                  text: s => <ResourceMenu resource={resource} item={s} />
+                  text: s => <ResourceMenu resource={resource} extraMenus={resources.extraMenus[resource]} item={s} />
                 }
               ]}
               items={items}

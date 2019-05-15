@@ -4,7 +4,7 @@ const helpers = require('../services/helpers')
 const Image = require('../models/image')
 
 const setFile = (req, res, next) => {
-  if (req.files) {
+  if (req.files && req.files[0]) {
     req.body.file = req.files[0]
   }
   next()

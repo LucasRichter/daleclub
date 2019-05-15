@@ -114,7 +114,7 @@ const MenuList = styled.ul`
 
 const MenuMobile = ({ links }) =>
   <MenuToggle>
-    <input type='checkbox' />
+    <input name='menu' type='checkbox' />
     <span />
     <span />
     <span />
@@ -122,7 +122,7 @@ const MenuMobile = ({ links }) =>
     <MenuList>
       {Object.entries(links).map(([key, value]) => (
         <Link key={key} href={`/${key}`}>
-          <Anchor>
+          <Anchor htmlFor='menu'>
             <li>
               {value}
             </li>
