@@ -26,12 +26,8 @@ const routes = require('./routes')
 const routerHandler = routes.getRequestHandler(app)
 
 const { config } = require('../config/config')
-const secure = require('express-force-https')
 
 app.prepare().then(() => {
-  if (!dev) {
-    server.use(secure)
-  }
   // Parse application/x-www-form-urlencoded
   server.use(bodyParser.urlencoded({ extended: false }))
   // Parse application/json
