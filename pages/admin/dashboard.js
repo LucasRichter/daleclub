@@ -106,7 +106,7 @@ class IndexPage extends Component {
     const token = localStorage.getItem('DALECLUB_TOKEN')
 
     if (!token) {
-      Router.push('/admin')
+      document.location.pathname = '/admin'
     }
   }
 

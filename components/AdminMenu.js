@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
-import { Users, Settings, Gift, List as ListIcon, User, Image } from 'react-feather'
+import { Users, Settings, Gift, List as ListIcon, User, Image, LogOut } from 'react-feather'
 import { ListItemIcon } from '@material-ui/core'
 
 const styles = theme => ({
@@ -54,6 +54,12 @@ function AdminList(props) {
             <ListItemText primary={value} />
           </ListItemLink>
         ))}
+        <ListItemLink onClick={() => localStorage.setItem('DALECLUB_TOKEN', '')} href={`/admin`}>
+          <ListItemIcon>
+            <LogOut />
+          </ListItemIcon>
+          <ListItemText primary='Sair' />
+        </ListItemLink>
       </List>
     </div>
   )

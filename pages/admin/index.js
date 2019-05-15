@@ -3,7 +3,6 @@ import PageHead from '../../components/PageHead'
 import { Box } from '@rebass/grid'
 import { H1 } from '../../components/Title'
 import { TextField, Button } from '@material-ui/core'
-import Router from 'next/router'
 import { withSnackbar } from 'notistack'
 import Axios from 'axios'
 import PropTypes from 'prop-types'
@@ -13,11 +12,10 @@ class IndexPage extends Component {
     enqueueSnackbar: PropTypes.func.isRequired
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     const token = localStorage.getItem('DALECLUB_TOKEN')
-
     if (token) {
-      Router.push('/admin/dashboard')
+      document.location.pathname = '/admin/dashboard'
     }
   }
 
@@ -31,7 +29,7 @@ class IndexPage extends Component {
     Axios.post('/api/auth', this.state)
       .then(({ data }) => {
         localStorage.setItem('DALECLUB_TOKEN', data.token)
-        Router.push('/admin/dashboard')
+        document.location.pathname = '/admin/dashboard'
         enqueueSnackbar('Logado com sucesso!', { variant: 'success' })
       })
       .catch(() => enqueueSnackbar('Dados incorretos!', { variant: 'error' }))
