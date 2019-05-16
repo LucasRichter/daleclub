@@ -4,6 +4,7 @@ import { Twitter, Instagram, Facebook } from 'react-feather'
 import { Box } from '@rebass/grid'
 import mediaQueries from '../helpers/mediaQueries'
 import PropTypes from 'prop-types'
+import colors from '../helpers/colors'
 
 const StyledSocial = styled(Box)`
   display: none;
@@ -20,17 +21,17 @@ const SocialMedias = ({ currentConfig }) =>
   <StyledSocial>
     <Box mb='20px'>
       <a href={currentConfig.twitter} target='_blank'>
-        <Twitter color='#55CBDC' />
+        <Twitter color={colors.sea} />
       </a>
     </Box>
     <Box mb='20px'>
       <a href={currentConfig.instagram} target='_blank'>
-        <Instagram color='#55CBDC' />
+        <Instagram color={colors.sea} />
       </a>
     </Box>
     <Box mb='20px'>
       <a href={currentConfig.facebook} target='_blank'>
-        <Facebook color='#55CBDC' />
+        <Facebook color={colors.sea} />
       </a>
     </Box>
   </StyledSocial>

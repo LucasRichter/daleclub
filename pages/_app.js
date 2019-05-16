@@ -9,6 +9,7 @@ import SocialMedias from '../components/SocialLinks'
 import Footer from '../components/Footer'
 import axios from 'axios'
 import { SnackbarProvider } from 'notistack'
+import mediaQueries from '../helpers/mediaQueries'
 
 axios.defaults.baseURL = process.env.API_DOMAIN
 
@@ -23,6 +24,14 @@ const bg = keyframes`
 const GlobalStyle = createGlobalStyle`
   ${Reset}
 
+  .track-visibility {
+    max-width: 100%;
+
+    @media ${mediaQueries.laptop} {
+      max-width: 320px;
+    }
+
+  }
 
   * {
     line-height: 1.6 !important;
@@ -67,7 +76,7 @@ class MyApp extends App {
       <SnackbarProvider maxSnack={3}>
         <GlobalStyle />
         <Container>
-          <Header />
+          <Header {...pageProps} />
           {render && <Component {...pageProps} />}
           {render && !window.location.href.includes('admin') && <SocialMedias {...pageProps} />}
           <Footer />

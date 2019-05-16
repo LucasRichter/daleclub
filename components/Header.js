@@ -6,10 +6,11 @@ import mediaQueries from '../helpers/mediaQueries'
 import Menudesktop from './MenuDesktop'
 import { Box } from '@rebass/grid'
 import Logo from './Logo'
+import PropTypes from 'prop-types'
 
 const StyledHeader = styled.header`
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: flex-start;
   text-align: center;
   padding: 20px 20px 0;
@@ -30,20 +31,28 @@ const links = {
   formatura: 'Formatura/100 dias'
 }
 
-export default () => (
+const Header = ({ currentConfig }) => (
   <StyledHeader>
-    <MenuMobile links={links} />
+    <MenuMobile socialLinks={currentConfig} links={links} />
 
     <Box
       mb='40px'
-      mr='auto'
+      mr={['auto', '100px']}
       ml={['auto', '0']}
     >
       <Link href='/'>
-        <Logo />
+        <a>
+          <Logo />
+        </a>
       </Link>
     </Box>
 
     <Menudesktop links={links} />
   </StyledHeader>
 )
+
+Header.propTypes = {
+  currentConfig: PropTypes.object
+}
+
+export default Header

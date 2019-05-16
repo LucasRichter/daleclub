@@ -3,6 +3,7 @@ import Logo from './Logo'
 import Text from './Text'
 import React from 'react'
 import mediaQueries from '../helpers/mediaQueries'
+import Link from 'next/link'
 
 const StyledFooter = styled.footer`
   display: flex;
@@ -18,7 +19,12 @@ const StyledFooter = styled.footer`
 
 const Footer = () =>
   <StyledFooter>
-    <Logo />
+    <Link href='/'>
+      <a>
+        <Logo />
+      </a>
+    </Link>
+
     <Text color='white'>
       © 2019 Daleclub, Todos os direitos reservados
     </Text>

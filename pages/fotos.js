@@ -4,15 +4,7 @@ import { Box, Flex } from '@rebass/grid'
 import SectionTitle from '../components/SectionTitle'
 import PropTypes from 'prop-types'
 import Axios from 'axios'
-import styled from 'styled-components'
-
-const Image = styled(Box)`
-  height: 320px;
-  width: 320px;
-  background-image: url(${p => p.url});
-  background-size: cover;
-  background-position: center;
-`
+import InstaImage from '../components/InstaImage'
 
 class IndexPage extends Component {
   static propTypes = {
@@ -52,13 +44,21 @@ class IndexPage extends Component {
               dark
             />
 
-            <Flex alignItems='center' justifyContent='space-between' flexWrap='wrap'>
-              {images.map(({ caption, id, images }) => {
-                const image = images.low_resolution
+            <Flex
+              alignItems='center'
+              justifyContent={['center', 'space-between']}
+              flexWrap='wrap'
+              pb='40px'
+              css={{ borderBottom: '1px solid white' }}
+            >
+              {images.map(({ caption, id, images }, i) => {
+                const image = images.standard_resolution
                 return (
-                  <Image
-                    m='20px 0'
+                  <InstaImage
+                    my='20px'
+                    mx={['auto', '0']}
                     key={id}
+                    number={i}
                     url={image.url}
                     title={caption && caption.text}
                     caption={caption && caption.text}

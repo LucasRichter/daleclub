@@ -5,6 +5,8 @@ import Anchor from './Anchor'
 import Link from 'next/link'
 import PropTypes from 'prop-types'
 import colors from '../helpers/colors'
+import { Twitter, Instagram, Facebook } from 'react-feather'
+import { Box, Flex } from '@rebass/grid'
 
 const MenuToggle = styled.div`
   @media ${mediaQueries.laptop} {
@@ -106,34 +108,67 @@ const MenuList = styled.ul`
 
   li
   {
+    text-align: left;
     padding: 10px 0;
     font-size: 22px;
   }
-  
 `
 
-const MenuMobile = ({ links }) =>
-  <MenuToggle>
-    <input name='menu' type='checkbox' />
-    <span />
-    <span />
-    <span />
+export default class MenuMobile extends React.Component {
+  static propTypes = {
+    links: PropTypes.object.isRequired,
+    socialLinks: PropTypes.object
+  }
 
-    <MenuList>
-      {Object.entries(links).map(([key, value]) => (
-        <Link key={key} href={`/${key}`}>
-          <Anchor htmlFor='menu'>
-            <li>
-              {value}
-            </li>
-          </Anchor>
-        </Link>
-      ))}
-    </MenuList>
-  </MenuToggle>
+  static defaultProps = {
+    socialLinks: {}
+  }
 
-MenuMobile.propTypes = {
-  links: PropTypes.object.isRequried
+  state = {
+    open: false
+  }
+
+  render() {
+    const { links, socialLinks } = this.props
+
+    return (
+
+      <MenuToggle>
+        <input name='menu' onChange={() => this.setState(p => ({ open: !p.open }))} checked={this.state.open} type='checkbox' />
+        <span />
+        <span />
+        <span />
+
+        <MenuList>
+          {Object.entries(links).map(([key, value]) => (
+            <Link key={key} href={`/${key}`}>
+              <Anchor onClick={() => this.setState(p => ({ open: false }))}>
+                <li>
+                  {value}
+                </li>
+              </Anchor>
+            </Link>
+          ))}
+
+          <Flex pt='20px' mt='20px' css={{ borderTop: '1px solid white' }}>
+            <Box mr='20px'>
+              <a href={socialLinks.twitter} target='_blank'>
+                <Twitter color='white' />
+              </a>
+            </Box>
+            <Box mr='20px'>
+              <a href={socialLinks.instagram} target='_blank'>
+                <Instagram color='white' />
+              </a>
+            </Box>
+            <Box>
+              <a href={socialLinks.facebook} target='_blank'>
+                <Facebook color='white' />
+              </a>
+            </Box>
+          </Flex>
+        </MenuList>
+      </MenuToggle>
+    )
+  }
 }
-
-export default MenuMobile

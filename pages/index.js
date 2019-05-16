@@ -81,6 +81,8 @@ class IndexPage extends Component {
           <Flex
             alignItems='flex-start'
             justifyContent={['center', 'space-between']}
+            pb='40px'
+            css={{ borderBottom: '1px solid white' }}
             flexWrap='wrap'
 
           >

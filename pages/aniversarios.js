@@ -24,7 +24,6 @@ class IndexPage extends Component {
 
   render () {
     const { currentConfig } = this.props
-    console.log(currentConfig.birthday_text)
 
     return (
       <main>
