@@ -35,7 +35,8 @@ export default () => (
     <MenuMobile links={links} />
 
     <Box
-      mr={['0', 'auto']}
+      mb='40px'
+      mr='auto'
       ml={['auto', '0']}
     >
       <Link href='/'>
