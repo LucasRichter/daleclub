@@ -40,9 +40,19 @@ class GuestForm extends React.Component {
       names
     }
 
-    await postGuest(data)
-    onClose()
-    enqueueSnackbar(`Nome${names.length > 1 ? 's' : ''} adicionado a lista :)`, { variant: 'success' })
+    try {
+      await postGuest(data)
+      onClose()
+      enqueueSnackbar(`Nome${names.length > 1 ? 's' : ''} adicionado a lista :)`, { variant: 'success' })
+    } catch (error) {
+      if (error.response) {
+        let {message, errors} = error.response.data
+        if (errors) {
+          message = Object.values(errors).join(', ')
+        }
+        enqueueSnackbar(message, { variant: 'error' })
+      }
+    }
   }
 
   add = () => {

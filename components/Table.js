@@ -12,7 +12,7 @@ import Text from './Text'
 const styles = theme => ({
   root: {
     marginTop: theme.spacing.unit * 3,
-    overflowX: 'auto'
+    overflowX: 'scroll'
   },
   table: {
     minWidth: 'auto'
@@ -39,12 +39,10 @@ class MainTable extends Component {
     if (value) {
       if (React.isValidElement(value)) {
         return value
-      }
-
-      if (typeof value === 'string') {
+      } else {
         return (
           <Text>
-            {value}
+            {value || '-'}
           </Text>
         )
       }

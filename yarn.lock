@@ -716,6 +716,39 @@
     lodash "^4.17.11"
     to-fast-properties "^2.0.0"
 
+"@brazilian-utils/format-cpf@^0.1.8":
+  version "0.1.8"
+  resolved "https://registry.yarnpkg.com/@brazilian-utils/format-cpf/-/format-cpf-0.1.8.tgz#2eaad4999a3d7667ea69481d5cbd8e4168cd28c2"
+  integrity sha512-y+Jhtksc2yVKmVlW70DMuTOuTHQvKXiblcae6Gcn6LoT4yp/+P+I961dYhlXJZtjMGPV/PqisHYb14HXASegzA==
+  dependencies:
+    "@brazilian-utils/helper-is-last-char" "^0.1.7"
+    "@brazilian-utils/helper-only-numbers" "^0.1.5"
+
+"@brazilian-utils/helper-generate-checksum@^0.1.4":
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/@brazilian-utils/helper-generate-checksum/-/helper-generate-checksum-0.1.4.tgz#ea1fc0d36a05cc030908aa8d15fff431c42dce97"
+  integrity sha512-lyF9Us6tlu7xSaEcjmec28QUADC1BWG4qx4H6nnbfJyzydXGbd7Jd2oPnNf6dBXmim+FPHhH/+TQP1sEPMOfLA==
+  dependencies:
+    "@brazilian-utils/helper-only-numbers" "^0.1.5"
+
+"@brazilian-utils/helper-is-last-char@^0.1.7":
+  version "0.1.7"
+  resolved "https://registry.yarnpkg.com/@brazilian-utils/helper-is-last-char/-/helper-is-last-char-0.1.7.tgz#fc9c89dd46f319f25882d06a2cb73b7d5a01a82f"
+  integrity sha512-40bVIHBII6BqPhkHZYa6AP3sLxiX8/SAvfBWgeIeEF0gaLBe+/L2MoOlWVlJarnKKxikHqDeUafbfaG/Bjl/NQ==
+
+"@brazilian-utils/helper-only-numbers@^0.1.5":
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/@brazilian-utils/helper-only-numbers/-/helper-only-numbers-0.1.5.tgz#ad1a18cf219ecd44d8c2c0ae3f058bcd42e795ab"
+  integrity sha512-nsfHGdDr97n8ech2UwMHgUjw9xGxbc5gyGgmSrvqisOzuBAjRx5LfcL7ZNjEiPe4hldwp6AgaMI6WXKCQ3fOfg==
+
+"@brazilian-utils/is-valid-cpf@^0.1.11":
+  version "0.1.11"
+  resolved "https://registry.yarnpkg.com/@brazilian-utils/is-valid-cpf/-/is-valid-cpf-0.1.11.tgz#07cc2fff28d017b7366ca6af5c3b3a83e909c013"
+  integrity sha512-qEyJUs7y2iQuWbe7wz8FZS/gwXrcu3LUVZR8BGvc1aWxWSPF/51GQwgJwM2kGl1GEsbmtIq0x6GLabV/1oxPcQ==
+  dependencies:
+    "@brazilian-utils/helper-generate-checksum" "^0.1.4"
+    "@brazilian-utils/helper-only-numbers" "^0.1.5"
+
 "@emotion/is-prop-valid@^0.7.3":
   version "0.7.3"
   resolved "https://registry.yarnpkg.com/@emotion/is-prop-valid/-/is-prop-valid-0.7.3.tgz#a6bf4fa5387cbba59d44e698a4680f481a8da6cc"
@@ -5988,6 +6021,14 @@ react-feather@^1.1.6:
   resolved "https://registry.yarnpkg.com/react-feather/-/react-feather-1.1.6.tgz#2a547e3d5cd5e383d3da0128d593cbdb3c1b32f7"
   integrity sha512-iCofWhTjX+vQwvDmg7o6vg0XrUg1c41yBDZG+l83nz1FiCsleJoUgd3O+kHpOeWMXuPrRIFfCixvcqyOLGOgIg==
 
+react-input-mask@^2.0.4:
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/react-input-mask/-/react-input-mask-2.0.4.tgz#9ade5cf8196f4a856dbf010820fe75a795f3eb14"
+  integrity sha512-1hwzMr/aO9tXfiroiVCx5EtKohKwLk/NT8QlJXHQ4N+yJJFyUuMT+zfTpLBwX/lK3PkuMlievIffncpMZ3HGRQ==
+  dependencies:
+    invariant "^2.2.4"
+    warning "^4.0.2"
+
 react-instafeed@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/react-instafeed/-/react-instafeed-1.0.0.tgz#337f0c0087f4e5c012679c45062cadfaebe8e9f9"
@@ -7516,7 +7557,7 @@ warning@^3.0.0:
   dependencies:
     loose-envify "^1.0.0"
 
-warning@^4.0.1:
+warning@^4.0.1, warning@^4.0.2:
   version "4.0.3"
   resolved "https://registry.yarnpkg.com/warning/-/warning-4.0.3.tgz#16e9e077eb8a86d6af7d64aa1e05fd85b4678ca3"
   integrity sha512-rpJyN222KWIvHJ/F53XSZv0Zl/accqHR8et1kpaMTD/fLCRxtV8iX8czMzY7sVZupTI3zcUTg8eycS2kNF9l6w==

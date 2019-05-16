@@ -8,7 +8,10 @@ const configSchema = new Schema({
   twitter: { type: String },
   twitter_user: { type: String },
   number_events: { type: Number, default: 4 },
-  contact_email: { type: String }
+  contact_email: { type: String },
+  birthday_text: { type: String },
+  college_text: { type: String },
+  home_text: { type: String }
 })
 
 module.exports = restful.model('ConfigSchema', configSchema)

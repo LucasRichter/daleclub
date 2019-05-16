@@ -11,7 +11,7 @@ export const getEvents = async (filters = {}) => {
 }
 
 export const postGuest = async data => {
-  const res = await Axios.post('/api/guests', data)
+  const res = await Axios.post('/api/guests/invite', data)
   return res
 }
 

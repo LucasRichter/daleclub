@@ -27,9 +27,14 @@ class IndexPage extends Component {
     item: {}
   }
 
-  static async getInitialProps ({ query: { id, resource, action } }) {
+  static async getInitialProps ({ query: { filterResource, filterValue, id, resource, action }, ...props }) {
     let items, item
-    let params = resources.params[resource] || {}
+    let options = resources.params[resource] || {}
+    let params = {
+      ...options,
+      [filterResource]: filterValue
+    }
+
     if (resource) {
       if (!action) {
         const res = await Axios.get(`/api/${resource}`, { params })
@@ -61,8 +66,12 @@ class IndexPage extends Component {
               Router.push('/admin/dashboard')
               enqueueSnackbar('Conteúdo salvo com sucesso!', { variant: 'success' })
             }}
-            onError={() => {
-              enqueueSnackbar('Algo deu errado!', { variant: 'error' })
+            onError={error => {
+              let {message, errors} = error.response.data
+              if (errors) {
+                message = Object.values(errors).join(', ')
+              }
+              enqueueSnackbar(message, { variant: 'error' })
             }}
             resource={resource}
             item={item}

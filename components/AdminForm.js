@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Box } from '@rebass/grid'
+import { Box, Flex } from '@rebass/grid'
 import { fields } from '../helpers/adminResources'
 import { Button } from '@material-ui/core'
 import { H2 } from './Title'
@@ -9,11 +9,14 @@ import { convertToRaw } from 'draft-js'
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css'
 import CheckboxField from './CheckboxField'
 import TextField from './TextField'
+import Text from './Text'
 import styled from 'styled-components'
 import draftToHtml from 'draftjs-to-html'
 import Axios from 'axios'
 import toFormData from 'json-form-data'
 import difference from '../helpers/difference'
+import { Trash2 } from 'react-feather'
+import DocumentPreview from './DocumentPreview'
 
 const Container = styled(Box)`
   width: 100%;
@@ -71,7 +74,6 @@ export default class AdminForm extends Component {
     const defaultProps = {
       margin: 'dense',
       id: id,
-      label,
       type: type || 'text',
       onChange: this.onChange,
       error: errors[id],
@@ -82,12 +84,13 @@ export default class AdminForm extends Component {
       case 'editor':
         return (
           <Editor
-            defaultEditorState={parseDefaultValue ? parseDefaultValue(value) : undefined}
+            defaultEditorState={value !== undefined && typeof value === 'string' && parseDefaultValue(value)}
             wrapperClassName='demo-wrapper'
             editorClassName='demo-editor'
             onEditorStateChange={editor =>
               this.onChange({ target: { id: id, value: editor } })}
           />
+
         )
       case 'boolean':
         return (
@@ -100,15 +103,21 @@ export default class AdminForm extends Component {
         )
 
       case 'file': {
-        return value && value.path
+        return value
           ? (
-            <img src={`/${value.path}`} style={{ maxWidth: '250px' }} />
+            <Flex column>
+              <DocumentPreview document={value} />
+              <Box mt='8px' width='fit-content'>
+                <Button variant='contained' color='secondary' onClick={() => this.onChange({ target: { id, value: undefined } })} >
+                  <Trash2 size={16} /> Remover anexo
+                </Button>
+              </Box>
+            </Flex>
           )
           : (
             <TextField
               {...defaultProps}
-            />
-          )
+            />)
       }
 
       default:
@@ -125,7 +134,10 @@ export default class AdminForm extends Component {
     const { resource } = this.props
 
     return fields[resource].map(field => (
-      <Box m='20px' css={{ width: '100%' }} >
+      <Box m='20px' css={{ textAlign: 'left', width: '100%' }} >
+        <Text>
+          {field.label}:
+        </Text>
         {this.getField(field)}
       </Box>
     ))
@@ -151,7 +163,8 @@ export default class AdminForm extends Component {
       }
 
       if (value && typeof value !== 'string' && field.type === 'editor') {
-        state[field.id] = draftToHtml(convertToRaw(value.getCurrentContent()))
+        const draft = draftToHtml(convertToRaw(value.getCurrentContent())).replace(new RegExp('<br>', 'g'), '<br />')
+        state[field.id] = draft
       }
 
       if (field.type === 'file') {
@@ -182,7 +195,7 @@ export default class AdminForm extends Component {
     this.setState({ buttonDisabled: true })
     func(url, parse, { headers: this.headers })
       .then(() => onSuccess())
-      .catch(() => onError())
+      .catch(error => onError(error))
       .finally(() => this.setState({ buttonDisabled: false }))
   }
 

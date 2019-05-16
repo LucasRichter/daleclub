@@ -21,7 +21,7 @@ function ListItemLink(props) {
 
 const links = {
   events: 'Eventos',
-  guests: 'Nomes',
+  guests: 'Nomes na lista',
   images: 'Galeria',
   lists: 'Listas aniversários',
   users: 'Usuários',

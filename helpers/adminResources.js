@@ -4,6 +4,18 @@ import { X, Check } from 'react-feather'
 import { ContentState, convertFromHTML, EditorState } from 'draft-js'
 
 export const fields = {
+  lists: [
+    {
+      id: 'name',
+      required: true,
+      label: 'Nome'
+    },
+    {
+      id: 'email',
+      label: 'E-mail',
+      type: 'email'
+    }
+  ],
   images: [
     {
       id: 'file',
@@ -19,6 +31,48 @@ export const fields = {
   ],
   config: [
     {
+      id: 'home_text',
+      type: 'editor',
+      parseDefaultValue: s => {
+        const blocksFromHTML = convertFromHTML(s)
+        const state = ContentState.createFromBlockArray(
+          blocksFromHTML.contentBlocks,
+          blocksFromHTML.entityMap
+        )
+        return EditorState.createWithContent(state)
+      },
+      required: true,
+      label: 'Texto da A Casa'
+    },
+    {
+      id: 'college_text',
+      type: 'editor',
+      parseDefaultValue: s => {
+        const blocksFromHTML = convertFromHTML(s || '<div></div>')
+        const state = ContentState.createFromBlockArray(
+          blocksFromHTML.contentBlocks,
+          blocksFromHTML.entityMap
+        )
+        return EditorState.createWithContent(state)
+      },
+      required: true,
+      label: 'Texto de Formatura'
+    },
+    {
+      id: 'birthday_text',
+      type: 'editor',
+      parseDefaultValue: s => {
+        const blocksFromHTML = convertFromHTML(s)
+        const state = ContentState.createFromBlockArray(
+          blocksFromHTML.contentBlocks,
+          blocksFromHTML.entityMap
+        )
+        return EditorState.createWithContent(state)
+      },
+      required: true,
+      label: 'Texto de Aniversário'
+    },
+    {
       id: 'facebook',
       label: 'Facebook Link'
     },
@@ -32,7 +86,7 @@ export const fields = {
     },
     {
       id: 'twitter_user',
-      label: 'Twitter Mention'
+      label: 'Twitter User'
     },
     {
       id: 'number_events',
@@ -57,9 +111,8 @@ export const fields = {
       type: 'email'
     },
     {
-      id: 'names',
-      label: 'Nome',
-      type: 'array'
+      id: 'name',
+      label: 'Nome'
     }
   ],
   users: [
@@ -188,8 +241,12 @@ export const columns = {
       title: 'Aniversiarante'
     },
     {
+      key: 'cpf',
+      title: 'CPF'
+    },
+    {
       key: 'birthday',
-      text: s => moment(s.date).format('DD/MM/YYYY HH:mm'),
+      text: s => moment(s.date).format('DD/MM/YYYY'),
       title: 'Data aniversário'
     },
     {
@@ -209,9 +266,8 @@ export const columns = {
       title: 'E-mail'
     },
     {
-      key: 'names',
-      title: 'Nomes',
-      text: s => s.names && s.names.join(', ')
+      key: 'name',
+      title: 'Nome'
     }
   ],
   events: [
@@ -220,16 +276,20 @@ export const columns = {
       title: 'Festa'
     },
     {
+      key: 'guest_count',
+      title: 'Nomes'
+    },
+    {
+      key: 'birthday_count',
+      title: 'Listas'
+    },
+    {
       key: 'edition',
       title: 'Edição'
     },
     {
-      key: 'permalink',
-      title: 'Permalink'
-    },
-    {
       key: 'cover',
-      text: s => s.cover && <img style={{ maxWidth: '177px' }} src={`/${s.cover.path}`} />,
+      text: s => s.cover && <img style={{ maxWidth: '100px' }} src={`/${s.cover.path}`} />,
       title: 'Cover'
     },
     {

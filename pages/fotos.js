@@ -23,9 +23,9 @@ class IndexPage extends Component {
     images: []
   }
 
-  static async getInitialProps ({ query: { id } }) {
+  static async getInitialProps () {
     const params = {
-      access_token: process.env.INSTAGRAM_TOKEN,
+      access_token: '13616104430.1f3ab73.9a567bea06fd4bd99a0392a6dc28d5e0',
       count: 12
     }
 

@@ -3,8 +3,6 @@ import PageHead from '../components/PageHead'
 import { Box, Flex } from '@rebass/grid'
 import SectionTitle from '../components/SectionTitle'
 import JsxParser from 'react-jsx-parser'
-import Button from '@material-ui/core/Button'
-import Link from 'next/link'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
@@ -21,16 +19,13 @@ class IndexPage extends Component {
   static propTypes = {
     currentConfig: PropTypes.object
   }
-
   render () {
     const { currentConfig } = this.props
-    console.log(currentConfig.birthday_text)
-
     return (
       <main>
         <PageHead
-          title='Daleclub | Aniversários'
-          description='Aniversários'
+          title='Daleclub | Formatura/100 dias'
+          description='Formatura/100 dias'
         />
 
         <Box
@@ -39,7 +34,7 @@ class IndexPage extends Component {
         >
           <Box mb='40px'>
             <SectionTitle
-              title='Aniversários'
+              title='Formatura/100 dias'
               dark
             />
           </Box>
@@ -51,17 +46,9 @@ class IndexPage extends Component {
             </Box>
 
             <Box ml='20px' >
-              {currentConfig.birthday_text &&
               <JsxParser
-                jsx={currentConfig.birthday_text}
+                jsx={currentConfig.college_text}
               />
-              }
-
-              <Link href='/lista'>
-                <Button color='secondary' variant='contained' size='large'>
-                  Enviar lista
-                </Button>
-              </Link>
             </Box>
           </Flex>
 

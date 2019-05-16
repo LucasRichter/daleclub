@@ -26,8 +26,8 @@ const links = {
   contato: 'Contato',
   aniversarios: 'Aniversários',
   acasa: 'A casa',
-  formatura: 'Formatura/100 dias',
-  fotos: 'Fotos'
+  fotos: 'Fotos',
+  formatura: 'Formatura/100 dias'
 }
 
 export default () => (

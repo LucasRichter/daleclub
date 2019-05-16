@@ -14,12 +14,13 @@ import moment from 'moment'
 import { H2 } from '../components/Title'
 import FormControl from '@material-ui/core/FormControl'
 import { withSnackbar } from 'notistack'
+import InputMask from '../components/InputMask'
 
 class lista extends Component {
   static propTypes = {
     event: PropTypes.string,
     events: PropTypes.array,
-    enqueueSnackbar: PropTypes.object
+    enqueueSnackbar: PropTypes.func
   }
 
   static defaultProps = {
@@ -34,7 +35,7 @@ class lista extends Component {
   state = {
     event: '',
     email: '',
-    current: 1,
+    cpf: '',
     birthday_name: '',
     guests: {
       convidado: ''
@@ -59,12 +60,22 @@ class lista extends Component {
 
     this.setState({ loading: true })
     const names = Object.values(guests).filter(n => n)
+    try {
+      await postList({
+        ...this.state,
+        names
+      })
 
-    await postList({
-      ...this.state,
-      names
-    })
-    enqueueSnackbar('Nome na lista confirmado!', { variant: 'success' })
+      enqueueSnackbar('Nome na lista confirmado!', { variant: 'success' })
+    } catch (error) {
+      if (error.response) {
+        let {message, errors} = error.response.data
+        if (errors) {
+          message = Object.values(errors).join(', ')
+        }
+        enqueueSnackbar(message, { variant: 'error' })
+      }
+    }
   }
 
   add = () => {
@@ -159,6 +170,16 @@ class lista extends Component {
               id='email'
               label='E-mail'
               type='email'
+              fullWidth
+            />
+
+            <InputMask
+              onChange={this.onChange}
+              margin='dense'
+              id='cpf'
+              label='CPF'
+              mask='999.999.999-99'
+              maskChar={null}
               fullWidth
             />
 
