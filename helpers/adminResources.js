@@ -52,6 +52,21 @@ export const fields = {
       id: 'carousel',
       label: 'Mostrar no carossel',
       type: 'boolean'
+    },
+    {
+      id: 'birthday',
+      label: 'Mostrar na tab Aniversários',
+      type: 'boolean'
+    },
+    {
+      id: 'college',
+      label: 'Mostrar na tab Formaturas',
+      type: 'boolean'
+    },
+    {
+      id: 'home',
+      label: 'Mostrar na tab A Casa',
+      type: 'boolean'
     }
   ],
   config: [
@@ -254,6 +269,21 @@ export const columns = {
       key: 'carousel',
       title: 'Carousel',
       text: s => s.carousel ? <Check /> : <X />
+    },
+    {
+      key: 'home',
+      title: 'A Casa',
+      text: s => s.home ? <Check /> : <X />
+    },
+    {
+      key: 'birthday',
+      title: 'Aniversários',
+      text: s => s.birthday ? <Check /> : <X />
+    },
+    {
+      key: 'college',
+      title: 'Formatura',
+      text: s => s.college ? <Check /> : <X />
     }
   ],
   users: [

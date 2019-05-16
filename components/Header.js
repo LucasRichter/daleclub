@@ -7,6 +7,7 @@ import Menudesktop from './MenuDesktop'
 import { Box } from '@rebass/grid'
 import Logo from './Logo'
 import PropTypes from 'prop-types'
+import SocialMedias from './SocialLinks'
 
 const StyledHeader = styled.header`
   display: flex;
@@ -37,7 +38,7 @@ const Header = ({ currentConfig }) => (
 
     <Box
       mb='40px'
-      mr={['auto', '100px']}
+      mr={['auto', '60px']}
       ml={['auto', '0']}
     >
       <Link href='/'>
@@ -46,6 +47,8 @@ const Header = ({ currentConfig }) => (
         </a>
       </Link>
     </Box>
+
+    <SocialMedias socialLinks={currentConfig} />
 
     <Menudesktop links={links} />
   </StyledHeader>

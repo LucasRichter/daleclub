@@ -170,9 +170,10 @@ export default class AdminForm extends Component {
 
     return fields[resource].map(field => (
       <Box m='20px' css={{ textAlign: 'left', width: '100%' }} >
+        {field.type !== 'boolean' &&
         <Text>
           {field.label}:
-        </Text>
+        </Text>}
         {this.getField(field)}
       </Box>
     ))

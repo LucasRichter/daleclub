@@ -5,7 +5,6 @@ import Header from '../components/Header'
 import Reset from 'styled-reset'
 import { createGlobalStyle, keyframes } from 'styled-components'
 import moment from 'moment'
-import SocialMedias from '../components/SocialLinks'
 import Footer from '../components/Footer'
 import axios from 'axios'
 import { SnackbarProvider } from 'notistack'
@@ -78,7 +77,6 @@ class MyApp extends App {
         <Container>
           <Header {...pageProps} />
           {render && <Component {...pageProps} />}
-          {render && !window.location.href.includes('admin') && <SocialMedias {...pageProps} />}
           <Footer />
         </Container>
       </SnackbarProvider>
