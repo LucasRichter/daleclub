@@ -66,7 +66,7 @@ class IndexPage extends Component {
               margin='dense'
               id='email'
               type='email'
-              label='E-mail'
+              label='Username'
             />
           </Box>
           <Box my='20px'>

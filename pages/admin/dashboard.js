@@ -9,7 +9,7 @@ import Table from '../../components/Table'
 import * as resources from '../../helpers/adminResources'
 import AdminMenu from '../../components/AdminMenu'
 import { Button } from '@material-ui/core'
-import { H2, H1 } from '../../components/Title'
+import { H2, H1, H3 } from '../../components/Title'
 import ResourceMenu from '../../components/ResourceMenu'
 import AdminForm from '../../components/AdminForm'
 
@@ -19,7 +19,8 @@ class IndexPage extends Component {
     action: PropTypes.string,
     item: PropTypes.object,
     enqueueSnackbar: PropTypes.func.isRequired,
-    resource: PropTypes.string
+    resource: PropTypes.string,
+    subtitle: PropTypes.string
   }
 
   static defaultProps = {
@@ -27,7 +28,7 @@ class IndexPage extends Component {
     item: {}
   }
 
-  static async getInitialProps ({ query: { filterResource, filterValue, id, resource, action }, ...props }) {
+  static async getInitialProps ({ query: { filterResource, filterValue, subtitle, id, resource, action }, ...props }) {
     let items, item
     let options = resources.params[resource] || {}
     let params = {
@@ -47,11 +48,11 @@ class IndexPage extends Component {
       }
     }
 
-    return { items, item, resource, action }
+    return { items, item, resource, action, subtitle }
   }
 
   get content() {
-    const { resource, action, items, item, enqueueSnackbar } = this.props
+    const { resource, action, items, item, enqueueSnackbar, subtitle } = this.props
 
     if (!resource) {
       return <H1>Dashboard</H1>
@@ -87,6 +88,11 @@ class IndexPage extends Component {
               <H2>
                 {resource}
               </H2>
+
+              {subtitle &&
+              <H3>
+                {subtitle}
+              </H3>}
 
               <Button
                 href={`/admin/dashboard/${resource}/create`}

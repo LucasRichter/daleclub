@@ -17,6 +17,9 @@ import toFormData from 'json-form-data'
 import difference from '../helpers/difference'
 import { Trash2 } from 'react-feather'
 import DocumentPreview from './DocumentPreview'
+import MenuItem from '@material-ui/core/MenuItem'
+import Select from '@material-ui/core/Select'
+import FormControl from '@material-ui/core/FormControl'
 
 const Container = styled(Box)`
   width: 100%;
@@ -58,17 +61,29 @@ export default class AdminForm extends Component {
     errors: {}
   }
 
+  async componentDidMount() {
+    const currentFields = fields[this.props.resource]
+
+    const selectFields = currentFields.filter(s => s.type === 'select')
+
+    for (let field of selectFields) {
+      const res = await Axios.get(`/api/${field.resource}`)
+      this.setState({ [`options${field.id}`]: res.data })
+    }
+  }
+
   onChange = e => {
-    const { id, value, checked, files } = e.target
+    const { id, name, value, checked, files } = e.target
+    const key = id || name
     const current = (files && files[0]) || checked || value
-    this.setState({ [id]: current,
+    this.setState({ [key]: current,
       errors: {
         ...this.state.errors,
-        [id]: ''
+        [key]: ''
       } })
   }
 
-  getField = ({ id, label, type, parseDefaultValue }) => {
+  getField = ({ id, label, type, parseDefaultValue, selectKey }) => {
     const { errors } = this.state
     const value = this.state[id]
     const defaultProps = {
@@ -81,6 +96,26 @@ export default class AdminForm extends Component {
     }
 
     switch (type) {
+      case 'select': {
+        const options = this.state[`options${id}`] || []
+        const selected = typeof value === 'object' ? value._id : value
+        return (
+          <FormControl style={{ width: '100%' }} >
+            <Select
+              value={selected}
+              onChange={this.onChange}
+              inputProps={{
+                name: id,
+                id
+              }}
+            >
+              {options.map(e => (
+                <MenuItem key={e._id} value={e._id}>{e[selectKey]}</MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        )
+      }
       case 'editor':
         return (
           <Editor

@@ -23,7 +23,7 @@ const listImpress = async id => {
 
   let guestsHtml = ''
   for (let guest of guests) {
-    guestsHtml += `<li>${guest}</li>`
+    guestsHtml += `<li>${guest.name}</li>`
   }
 
   html += `<ol>${guestsHtml}</ol><h3>Aniversariantes</h3>`

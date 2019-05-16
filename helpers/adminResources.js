@@ -6,13 +6,38 @@ import { ContentState, convertFromHTML, EditorState } from 'draft-js'
 export const fields = {
   lists: [
     {
+      id: 'event',
+      label: 'Festa',
+      type: 'select',
+      required: true,
+      selectKey: 'party',
+      resource: 'events?lists=true'
+    },
+    {
       id: 'name',
       required: true,
       label: 'Nome'
     },
     {
+      id: 'birthday',
+      type: 'date',
+      parseDefaultValue: s => s && s.substring(0, 16),
+      label: 'Data aniversário'
+    },
+    {
+      id: 'birthday_name',
+      label: 'Aniversiarante',
+      required: true
+    },
+    {
+      id: 'cpf',
+      label: 'CPF',
+      required: true
+    },
+    {
       id: 'email',
       label: 'E-mail',
+      required: true,
       type: 'email'
     }
   ],
@@ -103,7 +128,8 @@ export const fields = {
       id: 'event',
       label: 'Festa',
       type: 'select',
-      resource: 'events'
+      selectKey: 'party',
+      resource: 'events?guests=true'
     },
     {
       id: 'email',
@@ -200,11 +226,21 @@ export const params = {
 }
 
 export const extraMenus = {
-  events: [{
-    link: s => `/api/events/${s._id}/list`,
-    text: 'Lista para impressão',
-    target: '_blank'
-  }]
+  events: [
+    {
+      link: s => `/api/events/${s._id}/list`,
+      text: 'Lista para impressão',
+      target: '_blank'
+    },
+    {
+      link: s => `/admin/dashboard/lists?filterResource=event&filterValue=${s._id}&subtitle=${s.party}`,
+      text: 'Listas de aniversários'
+    },
+    {
+      link: s => `/admin/dashboard/guests?filterResource=event&filterValue=${s._id}&subtitle=${s.party}`,
+      text: 'Nomes na lista'
+    }
+  ]
 }
 
 export const columns = {
