@@ -68,7 +68,7 @@ class IndexPage extends Component {
 
         <Box
           mt='20px'
-          mx={['20px', '200px']}
+          mx={['20px', '120px']}
         >
 
           <Box mb='40px'>

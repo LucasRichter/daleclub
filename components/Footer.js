@@ -13,7 +13,7 @@ const StyledFooter = styled.footer`
   padding: 0 20px 20px;
 
   @media ${mediaQueries.laptop} {
-    padding: 40px 200px 80px;
+    padding: 40px 120px 80px;
   }
 `
 

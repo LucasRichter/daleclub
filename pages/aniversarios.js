@@ -44,7 +44,7 @@ class IndexPage extends Component {
 
         <Box
           css={{ backgroundColor: 'white' }}
-          p={['20px', '40px 200px']}
+          p={['20px', '40px 120px']}
         >
           <Box mb='40px'>
             <SectionTitle

@@ -68,6 +68,7 @@ export default class Event extends Component {
     return (
       <Container
         my='5px'
+        px='2.5px'
         show={this.state.show}
       >
         <Link

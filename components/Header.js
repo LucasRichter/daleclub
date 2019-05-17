@@ -17,9 +17,10 @@ const StyledHeader = styled.header`
   padding: 20px 20px 0;
 
   @media ${mediaQueries.laptop} {
-    padding: 20px 200px;
+    padding: 20px 120px;
     box-sizing: border-box;
     align-items: center;
+    white-space: nowrap;
     width: 100%;
   }
 `

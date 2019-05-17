@@ -40,6 +40,11 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Work Sans', sans-serif !important;
   }
 
+  #__next {
+    margin: auto;
+    max-width: 1500px;
+  }
+
   html {
     height: 100%;
     width: 100%;

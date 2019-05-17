@@ -54,7 +54,7 @@ class Agenda extends Component {
 
         <Flex
           css={{ backgroundColor: 'white' }}
-          p={['20px', '40px 200px']}
+          p={['20px', '40px 120px']}
           flexDirection={['column', 'row']}
         >
           <Box>
