@@ -9,6 +9,7 @@ const StyledTitle = styled(H2)`
   display: flex;
   align-items: center;
   text-transform: uppercase;
+  white-space: nowrap;
 
   ${p => p.bottom && css`
     display: block;
