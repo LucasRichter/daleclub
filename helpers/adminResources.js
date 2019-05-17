@@ -134,6 +134,11 @@ export const fields = {
       type: 'number'
     },
     {
+      id: 'instagram_photos',
+      label: 'Número de fotos na Tab Fotos',
+      type: 'number'
+    },
+    {
       id: 'contact_email',
       label: 'Contato'
     }

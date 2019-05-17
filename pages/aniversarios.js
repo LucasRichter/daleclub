@@ -66,11 +66,13 @@ class IndexPage extends Component {
               />
               }
 
-              <Link href='/lista'>
-                <Button color='secondary' variant='contained' size='large'>
-                  Enviar lista
-                </Button>
-              </Link>
+              <Box mt='20px'>
+                <Link href='/lista'>
+                  <Button color='secondary' variant='contained' size='large'>
+                    Enviar lista
+                  </Button>
+                </Link>
+              </Box>
             </Box>
           </Flex>
 
