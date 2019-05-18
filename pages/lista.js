@@ -35,6 +35,7 @@ class lista extends Component {
   state = {
     event: '',
     email: '',
+    current: 0,
     cpf: '',
     birthday_name: '',
     guests: {
