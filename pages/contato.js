@@ -26,7 +26,7 @@ class IndexPage extends Component {
           <Box mb='40px'>
             <SectionTitle
               title='Contato'
-              dark
+              white
             />
           </Box>
 

@@ -30,7 +30,9 @@ const StyledTitle = styled(H2)`
           ? colors.sea
           : p.dark
             ? colors.dark
-            : '#292929'};
+            : p.white
+              ? '#fff'
+              : '#292929'};
 
     ::after {
       content: '';
@@ -43,7 +45,9 @@ const StyledTitle = styled(H2)`
           ? colors.sea
           : p.dark
             ? colors.dark
-            : '#292929'};
+            : p.white
+              ? '#fff'
+              : '#292929'};
       display: block;
       height: 1px;
       width: 0;
