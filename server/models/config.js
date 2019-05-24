@@ -10,6 +10,7 @@ const configSchema = new Schema({
   number_events: { type: Number, default: 4 },
   contact_email: { type: String },
   birthday_text: { type: String },
+  instagram_token: { type: String },
   instagram_photos: { type: Number, default: 12 },
   college_text: { type: String },
   home_text: { type: String }

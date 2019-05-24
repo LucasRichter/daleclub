@@ -139,6 +139,10 @@ export const fields = {
       type: 'number'
     },
     {
+      id: 'instagram_token',
+      label: 'Token para acessar fotos do instagram'
+    },
+    {
       id: 'contact_email',
       label: 'Contato'
     }

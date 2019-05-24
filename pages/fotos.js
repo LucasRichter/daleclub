@@ -17,7 +17,7 @@ class IndexPage extends Component {
 
   static async getInitialProps ({ currentConfig }) {
     const params = {
-      access_token: '13616104430.1f3ab73.9a567bea06fd4bd99a0392a6dc28d5e0',
+      access_token: currentConfig.instagram_token,
       count: currentConfig.instagram_photos
     }
 

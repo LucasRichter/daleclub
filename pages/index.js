@@ -74,7 +74,7 @@ class IndexPage extends Component {
           <Box my='40px'>
             <SectionTitle
               title='Agenda'
-              dark
+              white
             />
           </Box>
 
