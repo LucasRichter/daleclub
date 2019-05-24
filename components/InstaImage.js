@@ -13,11 +13,11 @@ const Image = styled(Box)`
   transition: all .125s ease-in-out;
   transform: translateY(20%);
   opacity: 0;
+  transition-delay:  ${p => p.number * 0.10}s;
 
   ${p => p.isVisible && css`
     opacity: 1;
     transform: translateY(0);
-    transition-delay:  ${p => p.number * 0.10}s;
   `}
 `
 

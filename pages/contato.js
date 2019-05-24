@@ -36,7 +36,7 @@ class IndexPage extends Component {
               lower
               href={`mailto:${this.props.currentConfig.contact_email}`}
             >
-              contato@sinnersclub.com.br
+              {this.props.currentConfig.contact_email}
             </Anchor>
           </Box>
 
