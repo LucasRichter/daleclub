@@ -5,16 +5,22 @@ import PropTypes from 'prop-types'
 import { H2 } from './Title'
 import colors from '../helpers/colors'
 
+const Span = styled.span`
+  ${p => p.empty && css`
+    width: 10px;
+  `};
+
+  color: currentColor;
+  opacity: 0;
+  display: inline-block;
+  transform: translateY(20%);
+  transition: all ${p => p.index * 0.125}s ease-in-out;
+`
+
 const StyledTitle = styled(H2)`
-  display: flex;
   align-items: center;
   text-transform: uppercase;
   white-space: nowrap;
-
-  ${p => p.bottom && css`
-    display: block;
-  `};
-
   color: ${p =>
     p.purple
       ? colors.purple
@@ -39,14 +45,26 @@ const StyledTitle = styled(H2)`
             ? colors.dark
             : '#292929'};
       display: block;
-      height: 2px;
+      height: 1px;
       width: 0;
       margin-left: ${p => p.bottom ? '0' : '40px'};
-      transition: width .365s ease-in-out;
+      transition: width .500s ease-in-out;
+      max-width: 100%;
+      margin: 0 auto;
+      margin-top: 10px;
       ${p => p.isVisible && css`
-        width: 100%;
+        width: 500px;
       `};
     }
+
+
+    ${Span} {
+      ${p => p.isVisible && css`
+        opacity: 1;
+        transform: translateY(0);
+      `}
+    }
+
 `
 
 export default class SectionTitle extends Component {
@@ -54,12 +72,27 @@ export default class SectionTitle extends Component {
     title: PropTypes.string.isRequired
   }
 
-  render() {
+  get titleSpan() {
     const { title } = this.props
+    const spans = []
+    for (let i = 0; i < title.length; i++) {
+      let letter = title[i]
+
+      spans.push(
+        <Span empty={!letter.trim()} key={i} index={i + 1} >
+          {letter}
+        </Span>
+      )
+    }
+
+    return spans
+  }
+
+  render() {
     return (
       <TrackVisibility once>
-        <StyledTitle {...this.props}>
-          {title}
+        <StyledTitle centered {...this.props}>
+          {this.titleSpan}
         </StyledTitle>
       </TrackVisibility>
     )
