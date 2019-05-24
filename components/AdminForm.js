@@ -20,6 +20,7 @@ import DocumentPreview from './DocumentPreview'
 import MenuItem from '@material-ui/core/MenuItem'
 import Select from '@material-ui/core/Select'
 import FormControl from '@material-ui/core/FormControl'
+import ChipInput from 'material-ui-chip-input'
 
 const Container = styled(Box)`
   width: 100%;
@@ -96,9 +97,18 @@ export default class AdminForm extends Component {
     }
 
     switch (type) {
+      case 'array': {
+        return (
+          <ChipInput
+            value={value}
+            onAdd={(chip) => this.onChange({ target: { id: id, value: [ ...value, chip ] } })}
+            onDelete={(chip, index) => this.onChange({ target: { id: id, value: [ ...value.filter(c => c !== chip) ] } })}
+          />
+        )
+      }
       case 'select': {
         const options = this.state[`options${id}`] || []
-        const selected = typeof value === 'object' ? value._id : value
+        const selected = value && typeof value === 'object' ? value._id : value
         return (
           <FormControl style={{ width: '100%' }} >
             <Select
@@ -123,7 +133,8 @@ export default class AdminForm extends Component {
             wrapperClassName='demo-wrapper'
             editorClassName='demo-editor'
             onEditorStateChange={editor =>
-              this.onChange({ target: { id: id, value: editor } })}
+              this.onChange({ target: { id: id, value: editor } })
+            }
           />
 
         )
@@ -169,7 +180,7 @@ export default class AdminForm extends Component {
     const { resource } = this.props
 
     return fields[resource].map(field => (
-      <Box m='20px' css={{ textAlign: 'left', width: '100%' }} >
+      <Box key={field.id} m='20px' css={{ textAlign: 'left', width: '100%' }} >
         {field.type !== 'boolean' &&
         <Text>
           {field.label}:

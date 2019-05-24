@@ -14,14 +14,9 @@ export const fields = {
       resource: 'events?lists=true'
     },
     {
-      id: 'name',
-      required: true,
-      label: 'Nome'
-    },
-    {
       id: 'birthday',
       type: 'date',
-      parseDefaultValue: s => s && s.substring(0, 16),
+      parseDefaultValue: s => s && s.split('T')[0],
       label: 'Data aniversário'
     },
     {
@@ -39,6 +34,12 @@ export const fields = {
       label: 'E-mail',
       required: true,
       type: 'email'
+    },
+    {
+      id: 'names',
+      label: 'Convidados',
+      required: true,
+      type: 'array'
     }
   ],
   images: [
