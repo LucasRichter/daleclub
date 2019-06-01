@@ -98,10 +98,11 @@ export default class AdminForm extends Component {
 
     switch (type) {
       case 'array': {
+        console.log(value)
         return (
           <ChipInput
             value={value}
-            onAdd={(chip) => this.onChange({ target: { id: id, value: [ ...value, chip ] } })}
+            onAdd={(chip) => this.onChange({ target: { id: id, value: [ chip, ...value ] } })}
             onDelete={(chip, index) => this.onChange({ target: { id: id, value: [ ...value.filter(c => c !== chip) ] } })}
           />
         )

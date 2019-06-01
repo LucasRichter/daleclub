@@ -322,7 +322,7 @@ export const columns = {
     },
     {
       key: 'birthday',
-      text: s => moment(s.date).format('DD/MM/YYYY'),
+      text: s => moment(s.birthday).format('DD/MM/YYYY'),
       title: 'Data aniversário'
     },
     {

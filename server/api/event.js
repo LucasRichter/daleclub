@@ -5,6 +5,7 @@ const Event = require('../models/event')
 const Guest = require('../models/guest')
 const List = require('../models/list')
 const formatCpf = require('@brazilian-utils/format-cpf')
+const titleCase = require('title-case')
 
 const setFile = (req, res, next) => {
   if (req.files && req.files[0]) {
@@ -21,27 +22,27 @@ const listImpress = async id => {
 
   html += `<h2>${event.party} // ${event.edition}</h2><h3>Lista Desconto</h3>`
 
-  let guestsHtml = ''
+  let guestsHtml = []
   for (let guest of guests) {
-    guestsHtml += `<li>${guest.name}</li>`
+    guestsHtml.push(`<li>${titleCase(guest.name)}</li>`)
   }
 
-  html += `<ol>${guestsHtml}</ol><h3>Aniversariantes</h3>`
-  let listHtml = ''
-  let birthday = ''
+  html += `<ol>${guestsHtml.sort().join(' ')}</ol><h3>Aniversariantes</h3>`
+  let listHtml = []
+  let birthday = []
   for (let list of lists) {
-    birthday += `<li>${list.birthday_name} - ${formatCpf(list.cpf)}</li>`
+    birthday.push(`<li>${titleCase(list.birthday_name)} - ${formatCpf(list.cpf)}</li>`)
     for (let name of list.names) {
-      listHtml += `<li>${name}</li>`
+      listHtml.push(`<li>${titleCase(name)}</li>`)
     }
   }
 
-  html += `<ol>${birthday}</ol><h3>Convidados dos Aniversariantes</h3><ol>${listHtml}</ol>
+  html += `<ol>${birthday.sort().join(' ')}</ol><h3>Convidados dos Aniversariantes</h3><ol>${listHtml.sort().join(' ')}</ol>
     <style type='text/css'>
     @media screen, print {
       body {
         font-family: 'Courier';
-        font-size: 10;
+        font-size: 15px;
       }
     
       #wrapper {
