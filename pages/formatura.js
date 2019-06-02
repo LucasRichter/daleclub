@@ -8,7 +8,7 @@ import PropTypes from 'prop-types'
 import { getCollegeImage } from '../services/homeServices'
 
 const Image = styled.div`
-  background-image: url(${p => p.url});
+  background-image: url('${p => p.url}');
   background-size: cover;
   background-position: center;
   width: 400px;

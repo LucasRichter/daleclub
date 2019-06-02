@@ -8,7 +8,7 @@ import PropTypes from 'prop-types'
 import { getHomeImage } from '../services/homeServices'
 
 const Image = styled.div`
-  background-image: url(${p => p.url});
+  background-image: url('${p => p.url}');
   background-size: cover;
   background-position: center;
   width: 400px;
@@ -33,6 +33,7 @@ class IndexPage extends Component {
 
   render () {
     const { currentConfig, image } = this.props
+    console.log(image)
     return (
       <main>
         <PageHead
