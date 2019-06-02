@@ -21,12 +21,6 @@ async function main(to, subject, html, text) {
     to,
     subject,
     html: `
-      <a href='https://daleclub.com.br' target='_blank'>
-        <picture>
-          <source srcSet='https://daleclub.com.br/static/logo-mobi.png' media='(max-width: 600px)' >
-          <img src='https://daleclub.com.br/static/logo.png' alt='Logo' >
-        </picture>
-      </a>
       <div>
         ${html}
 
