@@ -32,7 +32,7 @@ const invite = async (req, res, next) => {
   const hasMany = names.length > 1
 
   await sendEmail(email, `Nome${hasMany ? 's' : ''} confirmado${hasMany ? 's' : ''}!`, `
-    <p>Olá! O${hasMany ? 's' : ''} nome${hasMany ? 's' : ''} para a festa <strong>${currentEvent.party}</strong> está confirmada:</p>
+    <p>Olá! O${hasMany ? 's' : ''} nome${hasMany ? 's' : ''} para a festa <strong>${currentEvent.party}</strong>:</p>
     <ol>
     ${names.map(n => `<li>${n}</li>`).join('')}
     </ol>

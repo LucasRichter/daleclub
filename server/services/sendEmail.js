@@ -35,7 +35,7 @@ async function main(to, subject, html, text) {
       <style type='text/css'>
         img {
           cursor: pointer;
-          max-width: 100px;
+          max-width: 100px !important;
         }
 
         strong {
