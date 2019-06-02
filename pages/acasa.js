@@ -33,7 +33,6 @@ class IndexPage extends Component {
 
   render () {
     const { currentConfig, image } = this.props
-    console.log(image)
     return (
       <main>
         <PageHead

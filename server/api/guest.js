@@ -3,6 +3,7 @@
 const helpers = require('../services/helpers')
 const Guest = require('../models/guest')
 const Event = require('../models/event')
+const sendEmail = require('../services/sendEmail')
 
 const invite = async (req, res, next) => {
   const { event, names, email } = req.body
@@ -27,6 +28,15 @@ const invite = async (req, res, next) => {
   }
 
   await Guest.insertMany(guests)
+
+  const hasMany = names.length > 1
+
+  await sendEmail(email, `Nome${hasMany ? 's' : ''} confirmado${hasMany ? 's' : ''}!`, `
+    <p>Olá! O${hasMany ? 's' : ''} nome${hasMany ? 's' : ''} para a festa <strong>${currentEvent.party}</strong> está confirmada:</p>
+    <ol>
+    ${names.map(n => `<li>${n}</li>`).join('')}
+    </ol>
+  `)
 
   return res.status(201).json({ success: true })
 }

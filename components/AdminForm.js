@@ -98,7 +98,6 @@ export default class AdminForm extends Component {
 
     switch (type) {
       case 'array': {
-        console.log(value)
         return (
           <ChipInput
             value={value}

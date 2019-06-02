@@ -50,14 +50,14 @@ const listImpress = async id => {
       }
       ol {
         -webkit-column-count: 2;
-        -webkit-column-gap: 10px;
+        -webkit-column-gap: 15px;
         -webkit-column-fill: auto;
     
         -moz-column-count: 2;
-        -moz-column-gap: 10px;      
+        -moz-column-gap: 15px;      
     
         column-count: 2;
-        column-gap: 10px;
+        column-gap: 15px;
         column-fill: auto;
       }
     }
