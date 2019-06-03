@@ -7,7 +7,6 @@ import Axios from 'axios'
 import JsxParser from 'react-jsx-parser'
 import SectionTitle from '../components/SectionTitle'
 import styled from 'styled-components'
-import mediaQueries from '../helpers/mediaQueries'
 import GuestForm from '../components/GuestForm'
 import {
   TwitterShareButton,
@@ -17,10 +16,6 @@ import moment from 'moment'
 
 const Image = styled.img`
   max-width: 100%;
-
-  @media ${mediaQueries.laptop} {
-    max-width: unset;
-  }
 `
 
 class Agenda extends Component {

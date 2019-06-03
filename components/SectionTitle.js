@@ -4,6 +4,7 @@ import TrackVisibility from 'react-on-screen'
 import PropTypes from 'prop-types'
 import { H2 } from './Title'
 import colors from '../helpers/colors'
+import mediaQueries from '../helpers/mediaQueries'
 
 const Span = styled.span`
   ${p => p.empty && css`
@@ -18,9 +19,11 @@ const Span = styled.span`
 `
 
 const StyledTitle = styled(H2)`
+  @media ${mediaQueries.laptop} {
+    white-space: nowrap;
+  }
   align-items: center;
   text-transform: uppercase;
-  white-space: nowrap;
   color: ${p =>
     p.purple
       ? colors.purple

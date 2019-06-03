@@ -7,8 +7,12 @@ import Text from './Text'
 import moment from 'moment'
 import Button from '@material-ui/core/Button'
 import Link from 'next/link'
+import mediaQueries from '../helpers/mediaQueries'
 
 const Container = styled(Box)`
+  @media ${mediaQueries.laptop} {
+    white-space: nowrap;
+  }
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -20,7 +24,6 @@ const Container = styled(Box)`
   transition: all .300s ease-in;
   transform: translateY(20%);
   opacity: 0;
-  white-space: nowrap;
 
   ${p => p.show && css`
     opacity: 1;
