@@ -15,7 +15,8 @@ import {
 import moment from 'moment'
 
 const Image = styled.img`
-  max-width: 100%;
+  max-width: 433px;
+  width: 100%;
 `
 
 class Agenda extends Component {
