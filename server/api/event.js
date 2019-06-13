@@ -46,7 +46,7 @@ const listImpress = async id => {
       }
     
       #wrapper {
-        width: 800px;
+        width: 1000px;
       }
       ol {
         -webkit-column-count: 2;
@@ -57,8 +57,12 @@ const listImpress = async id => {
         -moz-column-gap: 15px;      
     
         column-count: 2;
-        column-gap: 15px;
+        column-gap: 100px;
         column-fill: auto;
+
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
       }
     }
     </style>
