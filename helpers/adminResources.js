@@ -239,6 +239,9 @@ export const fields = {
 }
 
 export const params = {
+  events: {
+    sort: '-date'
+  },
   guests: {
     populate: 'event'
   },
