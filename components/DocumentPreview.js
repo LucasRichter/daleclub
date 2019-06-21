@@ -31,7 +31,7 @@ export default class DocumentPreview extends PureComponent {
   fetchDocument = () => {
     const { document } = this.props
 
-    if (document) {
+    if (document && typeof document === 'object') {
       if ('path' in document) {
         this.setState({ fileContent: `/${document.path}` })
       } else {
