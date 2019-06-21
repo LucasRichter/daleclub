@@ -30,8 +30,8 @@ const validateDate = async (req, res, next) => {
 
   const eventDate = moment(currentEvent.date)
 
-  if (parseInt(eventDate.format('MM')) !== parseInt(birthdayDate.format('MM'))) {
-    return res.status(400).json({ message: 'A data de aniversário precisa ser no mesmo mês do evento!' })
+  if (parseInt(eventDate.diff(birthdayDate, 'd')) > 15) {
+    return res.status(400).json({ message: 'A data de aniversário precisa ter no máximo 15 dias de diferença!' })
   }
   next()
 }
