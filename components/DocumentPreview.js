@@ -45,7 +45,7 @@ export default class DocumentPreview extends PureComponent {
     const { fileContent } = this.state
     return (
       <img
-        style={{ maxWidth: 320 }}
+        style={{ height: 320 }}
         src={fileContent}
       />
     )

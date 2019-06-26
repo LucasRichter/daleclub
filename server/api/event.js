@@ -87,6 +87,7 @@ const afterGet = async (req, res, next) => {
     }
 
     res.locals.bundle = newBundle
+    res.set('x-total-count', newBundle.length)
   } else {
     const { _doc } = bundle
     const birthdayCount = await List.count({ event: _doc._id })

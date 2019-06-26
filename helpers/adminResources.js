@@ -203,7 +203,7 @@ export const fields = {
     {
       id: 'date',
       type: 'datetime-local',
-      parseDefaultValue: s => s && s.substring(0, 16),
+      parseDefaultValue: s => s && moment(s).format('YYYY-MM-DD[T]HH:mm'),
       label: 'Data'
     },
     {

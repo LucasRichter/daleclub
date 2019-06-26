@@ -1,11 +1,17 @@
 'use strict'
 const jwt = require('jsonwebtoken')
 const helpers = require('../services/helpers')
+const bcrypt = require('bcrypt')
 const User = require('../models/user')
 User.methods(['get', 'post', 'put', 'delete'])
 User.updateOptions({ new: true, runValidators: true })
-User.before('post', helpers.validateJwt).before('put', helpers.validateJwt).before('delete', helpers.validateJwt)
+User.before('post', [helpers.validateJwt, hashPassowrd]).before('put', [helpers.validateJwt, hashPassowrd]).before('delete', helpers.validateJwt)
 User.after('post', helpers.formatResponse).after('put', helpers.formatResponse)
+
+function hashPassowrd(req, res, next) {
+  req.body.password = bcrypt.hashSync(req.body.password, 10)
+  next()
+}
 
 module.exports = function (server) {
   User.register(server, '/api/users')
@@ -25,7 +31,7 @@ module.exports = function (server) {
         user.comparePassword(req.body.password, function(err, isMatch) {
           if (isMatch && !err) {
             // Create token if the password matched and no error was thrown
-            var token = jwt.sign(JSON.stringify(user), process.env.SECRET)
+            var token = jwt.sign(JSON.stringify(user), process.env.SECRET, { expiresIn: '1 day' })
             res.json({
               success: true,
               message: 'Authentication successfull',
