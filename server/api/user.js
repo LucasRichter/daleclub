@@ -31,7 +31,7 @@ module.exports = function (server) {
         user.comparePassword(req.body.password, function(err, isMatch) {
           if (isMatch && !err) {
             // Create token if the password matched and no error was thrown
-            var token = jwt.sign(JSON.stringify(user), process.env.SECRET, { expiresIn: '1 day' })
+            var token = jwt.sign(JSON.stringify(user), process.env.SECRET)
             res.json({
               success: true,
               message: 'Authentication successfull',
