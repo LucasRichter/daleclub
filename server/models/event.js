@@ -7,7 +7,7 @@ const mongooseThumbnailPlugin = mongooseThumbnailLib.thumbnailPlugin
 const eventsSchema = new Schema({
   permalink: { type: String, required: true, unique: true },
   edition: { type: String, default: '' },
-  party: { type: String, unique: true, required: true },
+  party: { type: String, required: true },
   date: { type: Date, required: true },
   description: { type: String, required: true },
   guests: { type: Boolean, default: true },

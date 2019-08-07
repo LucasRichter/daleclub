@@ -53,7 +53,12 @@ class Agenda extends Component {
           p={['20px', '40px 120px']}
           flexDirection={['column', 'row']}
         >
-          <Box>
+          <Box
+            width='100%'
+            css={{
+              maxWidth: 433
+            }}
+          >
             <Image
               src={`/${cover.path}`}
               alt={party}
