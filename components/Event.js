@@ -7,12 +7,8 @@ import Text from './Text'
 import moment from 'moment'
 import Button from '@material-ui/core/Button'
 import Link from 'next/link'
-import mediaQueries from '../helpers/mediaQueries'
 
 const Container = styled(Box)`
-  @media ${mediaQueries.laptop} {
-    white-space: nowrap;
-  }
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -79,9 +75,11 @@ export default class Event extends Component {
           as={`/agenda/${permalink}`}
         >
           <EventMain>
-            <H2 centered fontSize='15px' color='white'>
-              <strong>{party.toUpperCase()}</strong>
-            </H2>
+            <Box css={{ height: '40px' }}>
+              <H2 centered fontSize='15px' color='white'>
+                <strong>{party.toUpperCase()}</strong>
+              </H2>
+            </Box>
 
             <Box mb='20px' css={{
               textTransform: 'uppercase',
