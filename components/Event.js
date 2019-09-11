@@ -75,7 +75,7 @@ export default class Event extends Component {
           as={`/agenda/${permalink}`}
         >
           <EventMain>
-            <Box css={{ height: '40px' }}>
+            <Box css={{ height: '50px' }}>
               <H2 centered fontSize='15px' color='white'>
                 <strong>{party.toUpperCase()}</strong>
               </H2>
