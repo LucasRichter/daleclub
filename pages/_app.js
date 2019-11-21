@@ -10,12 +10,10 @@ import axios from 'axios'
 import { SnackbarProvider } from 'notistack'
 import mediaQueries from '../helpers/mediaQueries'
 import TagManager from 'react-gtm-module'
- 
+
 const tagManagerArgs = {
-    gtmId: 'GTM-5VGQP7N'
+  gtmId: 'GTM-5VGQP7N'
 }
- 
-TagManager.initialize(tagManagerArgs)
 
 axios.defaults.baseURL = process.env.API_DOMAIN
 
@@ -69,6 +67,9 @@ const GlobalStyle = createGlobalStyle`
 `
 
 class MyApp extends App {
+  componentDidMount () {
+    TagManager.initialize(tagManagerArgs)
+  }
   static async getInitialProps ({ Component, ctx }) {
     const res = await axios.get('/api/config/current')
     return {
