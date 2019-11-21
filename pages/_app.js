@@ -9,8 +9,13 @@ import Footer from '../components/Footer'
 import axios from 'axios'
 import { SnackbarProvider } from 'notistack'
 import mediaQueries from '../helpers/mediaQueries'
-import Router from 'next/router'
-import withFBQ from 'next-fbq'
+import TagManager from 'react-gtm-module'
+ 
+const tagManagerArgs = {
+    gtmId: 'GTM-5VGQP7N'
+}
+ 
+TagManager.initialize(tagManagerArgs)
 
 axios.defaults.baseURL = process.env.API_DOMAIN
 
@@ -91,4 +96,4 @@ class MyApp extends App {
   }
 }
 
-export default withFBQ('1820990144846365', Router)(MyApp)
+export default MyApp
