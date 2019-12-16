@@ -372,6 +372,17 @@ export const columns = {
       title: 'Cover'
     },
     {
+      key: 'cover.size',
+      text: s => {
+        const bytes = s.cover.size
+        var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB']
+        if (bytes === 0) return '0 Byte'
+        var i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)))
+        return Math.round(bytes / Math.pow(1024, i), 2) + ' ' + sizes[i]
+      },
+      title: `Tamanho do arquivo`
+    },
+    {
       key: 'date',
       text: s => moment(s.date).format('DD/MM/YYYY HH:mm'),
       title: 'Data'

@@ -33,7 +33,8 @@ class IndexPage extends Component {
     let options = resources.params[resource] || {}
     let params = {
       ...options,
-      [filterResource]: filterValue
+      [filterResource]: filterValue,
+      limit: 10
     }
 
     if (resource) {
