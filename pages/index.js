@@ -84,7 +84,6 @@ class IndexPage extends Component {
             pb='40px'
             css={{ borderBottom: '1px solid white' }}
             flexWrap='wrap'
-
           >
             {events.map((event, index) => (
               <Event

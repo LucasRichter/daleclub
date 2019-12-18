@@ -15,7 +15,6 @@ const Container = styled(Box)`
   align-items: stretch;
   justify-content: center;
   flex-grow: 1;
-  max-width: 242px;
   flex-basis: 0;
   transition: all .300s ease-in;
   transform: translateY(20%);
@@ -66,8 +65,8 @@ export default class Event extends Component {
 
     return (
       <Container
-        my='5px'
-        px='2.5px'
+        my={['15px', 50]}
+        px={['15px', 95]}
         show={this.state.show}
       >
         <Link

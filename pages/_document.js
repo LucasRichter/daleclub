@@ -25,6 +25,7 @@ export default class MyDocument extends Document {
       <html>
         <Head>
           {/* Step 5: Output the styles in the head  */}
+          <link href='https://fonts.googleapis.com/css?family=Inconsolata|Montserrat|Work+Sans:300,600,700|Material+Icons' rel='stylesheet' />
           {this.props.styleTags}
         </Head>
         <body>

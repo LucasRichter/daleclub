@@ -7,6 +7,7 @@ const mongoose = require('mongoose')
 const glob = require('glob')
 const next = require('next')
 const path = require('path')
+const compression = require('compression')
 
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
@@ -32,6 +33,8 @@ const { config } = require('../config/config')
 
 app.prepare().then(() => {
   // Parse application/x-www-form-urlencoded
+  server.use(compression())
+
   server.use(bodyParser.urlencoded({ extended: false }))
   // Parse application/json
   server.use(bodyParser.json())
