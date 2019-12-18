@@ -21,7 +21,10 @@ const storage = multer.diskStorage({
     cb(null, `${Date.now()}_${file.originalname}`)
   }
 })
-const upload = multer({ storage })
+const upload = multer({
+  storage,
+  limits: { fileSize: 1024 * 1024 }
+})
 const routes = require('./routes')
 const routerHandler = routes.getRequestHandler(app)
 
