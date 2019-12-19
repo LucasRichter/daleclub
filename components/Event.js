@@ -17,6 +17,7 @@ const Container = styled(Box)`
   flex-grow: 1;
   flex-basis: 0;
   transition: all .300s ease-in;
+  max-width: 500px;
   transform: translateY(20%);
   opacity: 0;
 
@@ -28,6 +29,7 @@ const Container = styled(Box)`
 
 const Image = styled.img`
   width: 100%;
+  max-width: 210px;
 `
 
 const EventMain = styled.div`
