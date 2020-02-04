@@ -11,10 +11,13 @@ const validateDate = async (req, res, next) => {
   const today = moment()
   const initYear = moment(today).startOf('year')
   const endYear = moment(today).endOf('year')
-  const hasListInYear = await List.findOne({ cpf })
+  const hasListInYear = await List.findOne({
+    cpf,
+    airedAt: { $gte: initYear.format('DD-MM-YYYY'), $lte: endYear.format('DD-MM-YYYY') }
+  })
   const birthdayDate = moment(birthday, 'YYYY-MM-DD')
 
-  if (hasListInYear && birthdayDate.isBetween(initYear, endYear)) {
+  if (hasListInYear) {
     return res.status(400).json({ message: 'Já foi enviado uma lista com esse CPF este ano!' })
   }
 
