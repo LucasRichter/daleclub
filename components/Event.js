@@ -11,6 +11,7 @@ import Link from 'next/link'
 const Container = styled(Box)`
   text-align: center;
   display: flex;
+  width: 100%;
   flex-direction: column;
   align-items: stretch;
   justify-content: center;
