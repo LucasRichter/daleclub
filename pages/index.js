@@ -80,11 +80,11 @@ class IndexPage extends Component {
 
           <Flex
             alignItems='flex-start'
-            flexDirection={['column', 'row']}
+            flexDirection='row'
             justifyContent='center'
             pb='40px'
             css={{ borderBottom: '1px solid white' }}
-            flexWrap={['nowrap', 'wrap']}
+            flexWrap='wrap'
           >
             {events.map((event, index) => (
               <Event
