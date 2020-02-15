@@ -84,7 +84,7 @@ class IndexPage extends Component {
             justifyContent='center'
             pb='40px'
             css={{ borderBottom: '1px solid white' }}
-            flexWrap='wrap'
+            flexWrap={['nowrap', 'wrap']}
           >
             {events.map((event, index) => (
               <Event
